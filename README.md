@@ -1,5 +1,28 @@
 # onesie
 
+## Usage
+### 1. Install dependencies:
+
+```
+npm i 
+```
+
+### 2. Bundle/transpile:
+
+```
+npm run build
+```
+
+### 3. Serve application:
+
+```
+npm run serve 
+```
+
+Navigate to [127.0.0.1:8080](http://127.0.0.1:8080/)
+
+
+## Notes
 1. To generate package.json (which is already included in the project), run:
    npm init
 
@@ -19,3 +42,12 @@
 
 5. To start the dev server, run:
    webpack-dev-server
+
+
+
+
+
+
+
+
+
