@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';
-import { spy } from 'sinon';
 import World from '../src/app/components/world.jsx'
 
 describe('<World />', () => {
