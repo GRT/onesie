@@ -1,13 +1,13 @@
-import ips from 'one-ips';
+import {doGet} from './base-request';
 import config from '../../../../config';
+import join from 'url-join';
 
-export default function (error, org, assem, env, plat, callback) => {
-  ips(error, {
-    ooHost : config.host,
-    ooAPIToken : config.host,
-    ooOrganization : org,
-    ooAssembly : assem,
-    ooEnvironment : env,
-    ooPlatform : plat
-  }, callback );
+export default function (error, params, callback) {
+
+  const path = join( '/', params.ooOrganization,
+                     'assemblies', params.ooAssembly,
+                     'operations','environments', params.ooEnvironment,
+                     'platforms', params.ooPlatform);
+
+  doGet(error, path, callback );
 }
