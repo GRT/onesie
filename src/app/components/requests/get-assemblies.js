@@ -2,6 +2,17 @@
  * Created by Oakley Hall on 3/21/16.
  */
 
+/**
+ * @param error - error callback
+ *
+ * @param params - parameter object. Ex:
+ *
+ * {
+ *  ooOrganization : 'SomeOrg',
+ * }
+ *
+ * @param callback  - error callback
+ */
 export default function (error, params, callback) {
   const assems = {
     'GRT':['primer', 'onesie', 'landline', 'jenkins'] ,
