@@ -18,12 +18,15 @@ import join from 'url-join';
  */
 export default function (error, params, callback) {
 
+  callback(['213.324.34',
+            '214.34.34',
+            '234.324.23',
+            '134.32.234']);
 
+  //const path = join( '/', params.ooOrganization,
+  //                   'assemblies', params.ooAssembly,
+  //                   'operations','environments', params.ooEnvironment,
+  //                   'platforms', params.ooPlatform);
 
-  const path = join( '/', params.ooOrganization,
-                     'assemblies', params.ooAssembly,
-                     'operations','environments', params.ooEnvironment,
-                     'platforms', params.ooPlatform);
-
-  doGet(error, path, callback );
+  //doGet(error, path, callback );
 }
