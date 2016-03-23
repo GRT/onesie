@@ -1,16 +1,7 @@
-import Hello from "./components/hello.jsx";
-import World from "./components/world.jsx";
+"use strict";
+require("./components/style.css");
+import ScrollArea from "./components/scroll.jsx";
 import ReactDOM from 'react-dom';
 import React from 'react';
-import ips from './components/requests/get-ips'
 
-ReactDOM.render(<World/>, document.getElementById('world'));
-ReactDOM.render(<Hello/>, document.getElementById('hello'));
-
-ips(console.log,
-  {
-    ooOrganization : 'GlobalProducts',
-    ooAssembly : 'electrode-getting-started',
-    ooEnvironment : 'prod',
-    ooPlatform : 'electrode-nodejs'
-  }, console.log);
+ReactDOM.render(React.createElement(ScrollArea, null), document.getElementById("main"));

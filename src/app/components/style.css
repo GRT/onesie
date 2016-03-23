@@ -1,0 +1,11 @@
+.assembly {
+  width: 800px;
+	height: 300px;
+	font-size: 18px;
+	box-sizing: border-box;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+.assembly:nth-of-type(odd) {
+	background: #C0C0C0;
+}
