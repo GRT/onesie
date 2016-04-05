@@ -5,7 +5,7 @@
 /**
  * @param error - error callback
  *
- * @param callback  - error callback
+ * @param callback  - callback
  */
 export default function (error, callback) {
   callback(['DEV',

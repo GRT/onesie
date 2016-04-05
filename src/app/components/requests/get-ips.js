@@ -14,7 +14,7 @@ import join from 'url-join';
  *  ooPlatform : 'SomePlatform'
  * }
  *
- * @param callback  - error callback
+ * @param callback  - callback
  */
 export default function (error, params, callback) {
 
