@@ -1,6 +1,6 @@
-import {doGet} from './base-request';
-import config from '../../../../config';
-import join from 'url-join';
+//import {doGet} from './base-request';
+//import config from '../../../../config';
+//import join from 'url-join';
 
 /**
  * @param error - error callback
