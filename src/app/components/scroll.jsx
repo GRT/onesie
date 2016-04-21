@@ -4,10 +4,6 @@ import ScrollArea from 'react-scrollbar';
 class Scroll extends React.Component{
     constructor(props){
         super(props);
-
-        //this.state = {
-        //    itemsCount : 40
-        //};
     }
 
     handleScroll(scrollData){
