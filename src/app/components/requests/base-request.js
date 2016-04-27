@@ -1,4 +1,5 @@
 import https from 'https';
+import http from 'http';
 import config from '../../../../config';
 
 const doGet = function doGet(err, path, callback) {
@@ -10,19 +11,26 @@ const doGet = function doGet(err, path, callback) {
     crossDomain: true,
     headers: {
       'json': true,
-      'rejectUnauthorized': false,
+      //'rejectUnauthorized': false,
       'Content-Type' : 'text/plain',
-      'Authorization': 'Basic '+ config.token,
-      'Access-Control-Allow-Origin': 'http://127.0.0.1:8080'
+      'Access-Control-Allow-Credentials': true,
+      'Access-Control-Allow-Origin' : '*',
+      //'Authorization': 'Basic '+ config.token,
     }
   };
 
-  https.get(opts, (res) => {
+  const req = function req(res) {
     let body = '';
     res.on('data', (buf) => { body += buf; });
     res.on('end', () => { callback(body); });
-  });
+  };
 
+  if (config.protocol === 'https:') {
+    https.get(opts, req);
+  } else {
+    console.log( config.protocol );
+    http.get(opts, req);
+  }
 };
 
 export { doGet };
