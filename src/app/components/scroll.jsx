@@ -2,9 +2,7 @@ import React from 'react';
 import ScrollArea from 'react-scrollbar';
 
 class Scroll extends React.Component {
-  handleScroll(scrollData) {
-    console.log(scrollData);
-  }
+  handleScroll(scrollData) { }
 
   render() {
     let assemblies = [];
