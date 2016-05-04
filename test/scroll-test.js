@@ -1,15 +1,15 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';
-import Scroll from '../src/app/components/scroll.jsx'
+import Scroll from '../src/app/components/scroll.jsx';
 
 describe('<Scroll />', () => {
-    const scroll = shallow(<Scroll />);
-    const primer = scroll.find('#primer');
-    const onesie = scroll.find('#onesie');
-    const landline = scroll.find('#landline');
-    const jenkins = scroll.find('#jenkins');
-    const slacker = scroll.find('#slacker');
+  const scroll = shallow(<Scroll />);
+  const primer = scroll.find('#primer');
+  const onesie = scroll.find('#onesie');
+  const landline = scroll.find('#landline');
+  const jenkins = scroll.find('#jenkins');
+  const slacker = scroll.find('#slacker');
 
   it('has one primer component', () => {
     expect(primer).to.have.length.of(1);

@@ -23,6 +23,8 @@
     "chai": "^3.5.0",
     "css-loader": "^0.23.1",
     "enzyme": "^2.0.0",
+    "eslint": "^2.6.0",
+    "eslint-plugin-react": "^4.2.3",
     "file-loader": "^0.8.5",
     "jsdom": "^8.0.4",
     "mocha": "^2.4.5",
@@ -32,9 +34,10 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "test": "mocha test/.setup.js test/**/*-test.js",
-    "build": "webpack",
-    "serve": "webpack-dev-server"
+    "test": "mocha test/.setup.js test/**/*-test.js; npm run lint",
+    "build": "npm test; webpack",
+    "serve": "webpack-dev-server",
+    "lint": "eslint ./src/**/*.js*"
   },
   "repository": {
     "type": "git",
