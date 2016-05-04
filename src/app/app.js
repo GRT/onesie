@@ -1,7 +1,7 @@
-"use strict";
-require("./components/style.css");
-import ScrollArea from "./components/scroll.jsx";
-import DropDownComponent from "./components/dropdown.jsx";
+'use strict';
+require('./components/style.css');
+import ScrollArea from './components/scroll.jsx';
+import DropDownComponent from './components/dropdown.jsx';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import ips from './components/requests/get-ips';
@@ -15,7 +15,7 @@ ips(null, null, (iparray) => {
 //var organizations = ['GRT','Mr. Lee\'s Greater Hong Kong','Nova Sicilia','The Raft','Reverend Wayne\'s Pearly Gates']
 orgs(null, (orgs) => {
   console.log('orgs: ' + orgs );
-  ReactDOM.render(<DropDownComponent organizations={orgs}/>, document.getElementById("dropdown"));
+  ReactDOM.render(<DropDownComponent organizations={orgs}/>, document.getElementById('dropdown'));
 });
 
-ReactDOM.render(React.createElement(ScrollArea, null), document.getElementById("main"));
+ReactDOM.render(React.createElement(ScrollArea, null), document.getElementById('main'));
