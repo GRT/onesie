@@ -1,5 +1,5 @@
 # onesie
-[![Build Status](http://jenkins.flowstate.io/job/onesie-build-deploy/badge/icon)](http://jenkins.flowstate.io/job/onesie-build-deploy)
+[![Build Status](http://jenkins.flowstate.io/job/onesie-build-deploy/badge/icon)](http://jenkins.flowstate.io/job/onesie-build-deploy/badge/icon)
 
 ## Usage
 ### 1. Install dependencies:
