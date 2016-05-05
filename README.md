@@ -1,4 +1,5 @@
 # onesie
+[![Build Status](http://raspberrypi:8080/job/onesie-build-deploy/badge/icon)](http://raspberrypi:8080/job/onesie-build-deploy)
 
 ## Usage
 ### 1. Install dependencies:
