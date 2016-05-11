@@ -7,7 +7,7 @@
     "babel-core": "^6.4.5",
     "http-browserify": "^1.7.0",
     "https-browserify": "0.0.1",
-    "onesie-toggle-environment-block": "^0.1.0",
+    "onesie-toggle-environment-block": "latest",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-scrollbar": "^0.4.1",
