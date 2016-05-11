@@ -1,5 +1,5 @@
 # onesie
-
+[![Build Status](http://jenkins.flowstate.io/job/onesie-build-deploy/badge/icon)](http://jenkins.flowstate.io/job/onesie-build-deploy)
 ## Usage
 ### 1. Install dependencies:
 
@@ -42,7 +42,7 @@ Navigate to [127.0.0.1:8080](http://127.0.0.1:8080/)
 
 5. To start the dev server, run:
    webpack-dev-server
-
+ 
 
 
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import ScrollArea from 'react-scrollbar';
 import ClusterToggleView from 'onesie-toggle-environment-block';
 
@@ -11,41 +11,45 @@ var mockDataThumb1 = {
 };
 
 
-class Scroll extends React.Component {
-  handleScroll(scrollData) {
-    console.log(scrollData);
-  }
+class Scroll extends React.Component{
+    constructor(props){
+        super(props);
+    }
 
-  render() {
-    let assemblies = [];
-    assemblies.push(<div className="assembly" id="primer">primer</div>);
-    assemblies.push(<ClusterToggleView className="assembly" mode="thumbnail" environment={mockDataThumb1}></ClusterToggleView>);
-    assemblies.push(<div className="assembly" id="onesie">onesie</div>);
-    assemblies.push(<div className="assembly" id="landline">landline</div>);
-    assemblies.push(<div className="assembly" id="jenkins">jenkins</div>);
-    assemblies.push(<div className="assembly" id="slacker">slacker-acorn</div>);
+    handleScroll(scrollData){
+      console.log(scrollData);
+    }
 
-    let scrollbarStyles = { borderRadius: 5 };
+    render() {
+        var assemblies = [];
+        assemblies.push(<ClusterToggleView className="assembly" mode="thumbnail" environment={mockDataThumb1}></ClusterToggleView>);
+        assemblies.push(<div className="assembly" id="primer">primer</div>);
+        assemblies.push(<div className="assembly" id="onesie">onesie</div>);
+        assemblies.push(<div className="assembly" id="landline">landline</div>);
+        assemblies.push(<div className="assembly" id="jenkins">jenkins</div>);
+        assemblies.push(<div className="assembly" id="slacker">slacker-acorn</div>);
 
-    return (
-      <div>
-        <ScrollArea
-          className="area"
-          contentClassName="content"
-          verticalScrollbarStyle={scrollbarStyles}
-          verticalContainerStyle={scrollbarStyles}
-          horizontalScrollbarStyle={scrollbarStyles}
-          horizontalContainerStyle={scrollbarStyles}
-          smoothScrolling={1}
-          minScrollSize={40}
-          onScroll={this.handleScroll}
-        >
-          {assemblies}
-        </ScrollArea>
+        let scrollbarStyles = {borderRadius: 5};
 
-      </div>
-    );
-  }
+        return (
+            <div>
+                <ScrollArea
+                  className="area"
+                  contentClassName="content"
+                  verticalScrollbarStyle={scrollbarStyles}
+                  verticalContainerStyle={scrollbarStyles}
+                  horizontalScrollbarStyle={scrollbarStyles}
+                  horizontalContainerStyle={scrollbarStyles}
+                  smoothScrolling= {true}
+                  minScrollSize={40}
+                  onScroll={this.handleScroll}
+                  >
+                  {assemblies}
+                </ScrollArea>
+
+            </div>
+        );
+    }
 }
 
 export default Scroll;
