@@ -1,5 +1,15 @@
 import React from 'react';
 import ScrollArea from 'react-scrollbar';
+import ClusterToggleView from 'onesie-toggle-environment-block';
+
+var mockDataThumb1 = {
+  id: 1,
+  serverList: ["192.168.1.1" , "192.168.1.2"] ,
+  name: "dev" ,
+  status: "Success",
+  version: "1.5"
+};
+
 
 class Scroll extends React.Component {
   handleScroll(scrollData) {
@@ -9,6 +19,7 @@ class Scroll extends React.Component {
   render() {
     let assemblies = [];
     assemblies.push(<div className="assembly" id="primer">primer</div>);
+    assemblies.push(<ClusterToggleView className="assembly" mode="thumbnail" environment={mockDataThumb1}></ClusterToggleView>);
     assemblies.push(<div className="assembly" id="onesie">onesie</div>);
     assemblies.push(<div className="assembly" id="landline">landline</div>);
     assemblies.push(<div className="assembly" id="jenkins">jenkins</div>);
