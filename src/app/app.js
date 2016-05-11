@@ -1,7 +1,6 @@
 'use strict';
 require('./components/style.css');
 import ScrollArea from './components/scroll.jsx';
-import ClusterToggleView from 'onesie-toggle-environment-block';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import ips from './components/requests/get-ips';
