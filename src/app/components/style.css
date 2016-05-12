@@ -9,3 +9,16 @@
 .assembly:nth-of-type(odd) {
 	background: #C0C0C0;
 }
+
+#dropdown {
+  padding-bottom: 30px;
+}
+
+select {
+  font-size: 18px;
+  width: 200px;
+}
+
+p {
+  font-size: 18px;
+}
