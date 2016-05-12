@@ -4,7 +4,6 @@ import ScrollArea from './components/scroll.jsx';
 import DropDownComponent from './components/dropdown.jsx';
 import ReactDOM from 'react-dom';
 import React from 'react';
-import ips from './components/requests/get-ips';
 import orgs from './components/requests/get-orgs';
 import assems from './components/requests/get-assemblies';
 import envs from './components/requests/get-environments';
