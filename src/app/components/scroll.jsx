@@ -16,8 +16,6 @@ class Scroll extends React.Component{
     });
   }
 
-  handleScroll(scrollData){ }
-
   render() {
     let scrollbarStyles = {borderRadius: 5};
 
