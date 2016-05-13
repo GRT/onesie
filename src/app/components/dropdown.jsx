@@ -36,8 +36,8 @@ class DropDownComponent extends React.Component {
 }
 
 DropDownComponent.propTypes = {
-  func: React.PropTypes.func.isRequired,
-  params: React.PropTypes.object.isRequired
+  ajaxFunc: React.PropTypes.func.isRequired,
+  ajaxParams: React.PropTypes.object.isRequired
 };
 
 export default DropDownComponent;
