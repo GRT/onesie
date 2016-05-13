@@ -33,7 +33,7 @@ class Scroll extends React.Component{
               onScroll={this.handleScroll} >
               {
                 _.map(this.state.items, (item, index) => {
-                  return <div key={index} className="assembly" id="slacker">{item}</div>;
+                  return <div key={index} className="assembly" >{item}</div>;
                 })
               }
             </ScrollArea>
