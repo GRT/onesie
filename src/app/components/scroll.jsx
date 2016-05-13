@@ -2,13 +2,8 @@ import React from 'react'
 import ScrollArea from 'react-scrollbar';
 
 class Scroll extends React.Component{
-    constructor(props){
-        super(props);
-    }
 
-    handleScroll(scrollData){
-      console.log(scrollData);
-    }
+    handleScroll(scrollData){ }
 
     render() {
         var assemblies = [];

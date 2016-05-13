@@ -12,10 +12,8 @@ ReactDOM.render(React.createElement(ScrollArea, null), document.getElementById('
 
 let err = function err(e) { console.error(e); };
 
-//var organizations = ['GRT','Mr. Lee\'s Greater Hong Kong','Nova Sicilia','The Raft','Reverend Wayne\'s Pearly Gates']
-orgs(null, (orgs) => {
-  ReactDOM.render(<DropDownComponent organizations={orgs}/>, document.getElementById('dropdown'));
-});
+ReactDOM.render(<DropDownComponent ajaxFunc={orgs} ajaxParams={{}} />,
+  document.getElementById('dropdown'));
 
 assems(err, { ooOrganization : 'CorpOrg'}, (assemblies) => {
   console.log('Assemblies: ');
