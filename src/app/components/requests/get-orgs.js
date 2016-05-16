@@ -7,7 +7,7 @@
  *
  * @param callback  - callback
  */
-export default function (error, callback) {
+export default function (error, params, callback) {
   callback(['GRT',
     'Mr. Lee\'s Greater Hong Kong',
     'Nova Sicilia',

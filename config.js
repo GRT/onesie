@@ -1,6 +1,6 @@
 export default {
-  host: '127.0.0.1',
-  port: '3000',
-  protocol: 'https:',
+  host: '0.0.0.0',
+  port: '4000',
+  protocol: 'http:',
   token: ''
-}
+};
