@@ -1,31 +1,22 @@
 module.exports = {
-  context: __dirname + "/src/app",
+  context: __dirname + '/src/app',
   entry: {
-    javascript: "./app.js",
-    html: "./index.html",
+    javascript: './app.js',
+    html: './index.html'
   },
   output: {
-    filename: "app.js",
-    path: __dirname + "/dist",
+    filename: 'app.js',
+    path: __dirname + '/dist'
   },
   module: {
     loaders: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react']
-        }
+        test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel-loader',
+        query: { presets: ['es2015', 'react'] }
       },
-      {
-        test: /\.html$/,
-        loader: "file?name=[name].[ext]",
-      },
-      {
-        test: /\.css$/,
-        loader: "style-loader!css-loader",
-      }
+      { test: /\.html$/, loader: 'file?name=[name].[ext]' },
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      { test: /\.ico$/, loader: 'file-loader?name=[name].[ext]'}
     ]
   }
-}
+};

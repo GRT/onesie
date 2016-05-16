@@ -3,24 +3,11 @@ import DropDown from 'react-drop-down';
 
 class DropDownComponent extends React.Component {
 
-  componentWillMount() {
-    this.setState({items: [],value: ''});
-  }
+  componentWillMount () { this.setState({});}
 
-  componentDidMount () {
-    let dataFunc = this.props.ajaxFunc;
-    let params = this.props.ajaxParams;
-    dataFunc(this.error, params, (res) => {
-      this.setState({items: res,value: res[0]});
-    });
-  }
-
-  handleChange (e) {
-    this.setState({value: e});
-  }
-
-  error (e) {
-    console.log('Error' + e );
+  handleChange (selected) {
+    this.setState({value: selected });
+    this.props.onChange(selected);
   }
 
   render () {
@@ -28,16 +15,16 @@ class DropDownComponent extends React.Component {
       <div>
         <p>Select your organization</p>
         <DropDown
-              value={this.state.value}
-              onChange={this.handleChange.bind(this)}
-              options={this.state.items} />
+              value={ this.state.value || '' }
+              onChange={ this.handleChange.bind(this) }
+              options={ this.props.items } />
       </div>);
   }
 }
 
 DropDownComponent.propTypes = {
-  ajaxFunc: React.PropTypes.func.isRequired,
-  ajaxParams: React.PropTypes.object.isRequired
+  items: React.PropTypes.array.isRequired,
+  onChange: React.PropTypes.func.isRequired
 };
 
 export default DropDownComponent;
