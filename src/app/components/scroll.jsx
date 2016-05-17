@@ -3,22 +3,8 @@ import React from 'react';
 import ScrollArea from 'react-scrollbar';
 
 class Scroll extends React.Component{
-
-  componentWillMount() {
-    this.setState({items: []});
-  }
-
-  componentDidMount () {
-    let dataFunc = this.props.ajaxFunc;
-    let params = this.props.ajaxParams;
-    dataFunc(this.error, params, (res) => {
-      this.setState({items: _.map(res, 'ciName')});
-    });
-  }
-
   render() {
-    let scrollbarStyles = {borderRadius: 5};
-
+    const scrollbarStyles = {borderRadius: 5};
     return (
         <div>
             <ScrollArea
@@ -32,7 +18,7 @@ class Scroll extends React.Component{
               minScrollSize={40}
               onScroll={this.handleScroll} >
               {
-                _.map(this.state.items, (item, index) => {
+                _.map(this.props.items, (item, index) => {
                   return <div key={index} className="assembly" >{item}</div>;
                 })
               }
@@ -43,8 +29,7 @@ class Scroll extends React.Component{
 }
 
 Scroll.propTypes = {
-  ajaxFunc: React.PropTypes.func.isRequired,
-  ajaxParams: React.PropTypes.object.isRequired
+  items: React.PropTypes.array.isRequired
 };
 
 export default Scroll;
