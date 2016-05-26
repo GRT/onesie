@@ -8,7 +8,7 @@
     "build": "npm test; webpack",
     "serve": "webpack-dev-server",
     "lint": "eslint ./src/**/*.js*",
-    "go": "npm i; npm run build; npm run serve",
+    "start": "npm i; npm run build; npm run serve",
     "clear": "rm -rf node_modules; npm i",
     "kill": "kill -9 $(ps -ef | awk '/[w]ebpack-dev-server/{print $2}')"
   },
