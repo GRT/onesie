@@ -11,8 +11,9 @@ class DropDownComponent extends React.Component {
   }
 
   render () {
+    const dropStyles = {paddingBottom: 30};
     return (
-      <div>
+      <div style={dropStyles}>
         <p>Select your organization</p>
         <DropDown
               value={ this.state.value || '' }
