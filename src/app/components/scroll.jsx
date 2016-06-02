@@ -19,7 +19,7 @@ class Scroll extends React.Component{
               onScroll={this.handleScroll} >
               {
                 _.map(this.props.items, (item, index) => {
-                  const assemStyle = { width: 800, height: 300, fontSize: 18,
+                  var assemStyle = { width: 800, height: 300, fontSize: 18,
                     boxSizing: 'border-box', paddingLeft: 10, paddingTop: 10 };
                   assemStyle.background = ( index % 2 === 0 ) ? 'grey': 'white';
                   return <div key={index} style={assemStyle}>{item}</div>;
