@@ -3,10 +3,17 @@
   "version": "1.0.0",
   "description": "npm init",
   "main": "webpack.config.js",
+  "scripts": {
+    "test": "mocha test/.setup.js test/**/*-test.js; npm run lint",
+    "build": "npm test; webpack",
+    "serve": "webpack-dev-server",
+    "lint": "eslint ./src/**/*.js*",
+    "start": "npm i; npm run build; npm run serve",
+    "clear": "rm -rf node_modules; npm i",
+    "kill": "kill -9 $(ps -ef | awk '/[w]ebpack-dev-server/{print $2}')"
+  },
   "dependencies": {
     "babel-core": "^6.4.5",
-    "http-browserify": "^1.7.0",
-    "https-browserify": "0.0.1",
     "onesie-toggle-environment-block": "latest",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
@@ -34,12 +41,6 @@
     "react-hot-loader": "^1.3.0",
     "style-loader": "^0.13.0",
     "webpack-dev-server": "^1.14.1"
-  },
-  "scripts": {
-    "test": "mocha test/.setup.js test/**/*-test.js; npm run lint",
-    "build": "npm test; webpack",
-    "serve": "webpack-dev-server",
-    "lint": "eslint ./src/**/*.js*"
   },
   "repository": {
     "type": "git",

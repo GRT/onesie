@@ -1,33 +1,31 @@
 import React from 'react';
 import DropDown from 'react-drop-down';
-import orgs from './requests/get-orgs';
 
 class DropDownComponent extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = { value: this.props.organizations[0] }
+  componentWillMount () { this.setState({});}
+
+  handleChange (selected) {
+    this.setState({value: selected });
+    this.props.onChange(selected);
   }
 
-  handleChange (e) {
-    this.setState({value: e})
-    console.log(e)
-  }
-
-  render() {
+  render () {
+    const dropStyles = {paddingBottom: 30};
     return (
-      <div>
+      <div style={dropStyles}>
         <p>Select your organization</p>
         <DropDown
-              value={this.state.value}
-              onChange={this.handleChange.bind(this)}
-              options={this.props.organizations} />
-      </div>)
+              value={ this.state.value || '' }
+              onChange={ this.handleChange.bind(this) }
+              options={ this.props.items } />
+      </div>);
   }
 }
 
 DropDownComponent.propTypes = {
-  organizations: React.PropTypes.array.isRequired,
-}
+  items: React.PropTypes.array.isRequired,
+  onChange: React.PropTypes.func.isRequired
+};
 
 export default DropDownComponent;

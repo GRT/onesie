@@ -1,28 +1,14 @@
-import https from 'https';
 import config from '../../../../config';
 
 const doGet = function doGet(err, path, callback) {
-  const opts = {
-    host : config.host,
-    protocol : config.protocol,
-    port : config.port,
-    path : path,
-    crossDomain: true,
-    headers: {
-      'json': true,
-      'rejectUnauthorized': false,
-      'Content-Type' : 'text/plain',
-      'Authorization': 'Basic '+ config.token,
-      'Access-Control-Allow-Origin': 'http://127.0.0.1:8080'
-    }
+  const r = new XMLHttpRequest();
+  const url = config.protocol + '//' + config.host + ':' + config.port + path;
+  r.open('GET', url, true);
+  r.onreadystatechange = () => {
+    if (r.readyState != 4 || r.status != 200) { return; }
+    callback(JSON.parse(r.responseText));
   };
-
-  https.get(opts, (res) => {
-    let body = '';
-    res.on('data', (buf) => { body += buf; });
-    res.on('end', () => { callback(body); });
-  });
-
+  r.send();
 };
 
 export { doGet };

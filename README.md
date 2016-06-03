@@ -1,26 +1,28 @@
 # onesie
 [![Build Status](http://jenkins.flowstate.io/job/onesie-build-deploy/badge/icon)](http://jenkins.flowstate.io/job/onesie-build-deploy)
+
 ## Usage
-### 1. Install dependencies:
+
+Onesie makes http calls to a local dev server you can install as follows.
+
+### 1. Start OneOps Dev Server:
+```sh
+ $ git clone git@github.com:GRT/oo-static-server.git
+ $ cd oo-static-server
+ $ npm i
+ $ npm run serve
+```
+### 2. Build and serve Onesie:
 
 ```
-npm i 
+npm start
 ```
-
-### 2. Bundle/transpile:
-
-```
-npm run build
-```
-
-### 3. Serve application:
-
-```
-npm run serve 
-```
-
 Navigate to [127.0.0.1:8080](http://127.0.0.1:8080/)
 
+## Utility scripts
+ - `npm run kill` kill webpack-dev-server process
+ - `npm run clear` nuke node_modules and reinstall
+ - `npm start` build and serve
 
 ## Notes
 1. To generate package.json (which is already included in the project), run:
@@ -42,6 +44,7 @@ Navigate to [127.0.0.1:8080](http://127.0.0.1:8080/)
 
 5. To start the dev server, run:
    webpack-dev-server
+   
  
 
 
