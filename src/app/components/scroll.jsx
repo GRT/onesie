@@ -5,10 +5,10 @@ import ClusterToggleView from 'onesie-toggle-environment-block';
 
 var mockDataThumb1 = {
   id: 1,
-  serverList: ["192.168.1.1" , "192.168.1.2"] ,
-  name: "dev" ,
-  status: "Success",
-  version: "1.5"
+  serverList: ['192.168.1.1' , '192.168.1.2'] ,
+  name: 'dev' ,
+  status: 'Success',
+  version: '1.5'
 };
 
 
@@ -35,6 +35,7 @@ class Scroll extends React.Component{
                   return <div key={index} style={assemStyle}>{item}</div>;
                 })
               }
+              <ClusterToggleView mode="thumbnail" environment={mockDataThumb1}></ClusterToggleView>
             </ScrollArea>
         </div>
     );
