@@ -1,5 +1,4 @@
 'use strict';
-
 require('../static/favicon.ico');
 import Main from './main.jsx';
 import ReactDOM from 'react-dom';

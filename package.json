@@ -8,12 +8,13 @@
     "build": "npm test; webpack",
     "serve": "webpack-dev-server",
     "lint": "eslint ./src/**/*.js*",
-    "go": "npm i; npm run build; npm run serve",
+    "start": "npm i; npm run build; npm run serve",
     "clear": "rm -rf node_modules; npm i",
     "kill": "kill -9 $(ps -ef | awk '/[w]ebpack-dev-server/{print $2}')"
   },
   "dependencies": {
     "babel-core": "^6.4.5",
+    "onesie-toggle-environment-block": "latest",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-drop-down": "^1.0.0",

@@ -15,14 +15,14 @@ Onesie makes http calls to a local dev server you can install as follows.
 ### 2. Build and serve Onesie:
 
 ```
-npm run go
+npm start
 ```
 Navigate to [127.0.0.1:8080](http://127.0.0.1:8080/)
 
 ## Utility scripts
  - `npm run kill` kill webpack-dev-server process
  - `npm run clear` nuke node_modules and reinstall
- - `npm run go` build and serve
+ - `npm start` build and serve
 
 ## Notes
 1. To generate package.json (which is already included in the project), run:
