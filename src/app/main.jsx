@@ -1,7 +1,7 @@
 'use strict';
 import React from 'react';
 import ScrollArea from './components/scroll.jsx';
-import DropDownComponent from './components/dropdown.jsx';
+import SelectComponent from './components/select.jsx';
 import orgs from './components/requests/get-orgs';
 import assems from './components/requests/get-assemblies';
 import _ from 'lodash';
@@ -18,6 +18,7 @@ class Main extends React.Component{
   }
 
   dropDownChange (org) {
+    console.log('org: ' + org);
     this.getAssemblies(org);
   }
 
@@ -32,8 +33,8 @@ class Main extends React.Component{
   render() {
     return (
       <div>
-        <DropDownComponent onChange={ this.dropDownChange.bind(this) }
-                           items={this.state.orgs || []} />
+        <SelectComponent options={this.state.orgs || []}
+                         onChange={this.dropDownChange.bind(this)} />
         <ScrollArea  items={this.state.assemblies || []} />
       </div>
     );
@@ -41,4 +42,3 @@ class Main extends React.Component{
 }
 
 export default Main;
-

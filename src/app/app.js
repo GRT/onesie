@@ -1,6 +1,5 @@
 'use strict';
 
-require('./components/style.css');
 require('../static/favicon.ico');
 import Main from './main.jsx';
 import ReactDOM from 'react-dom';
