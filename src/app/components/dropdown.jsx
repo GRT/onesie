@@ -6,6 +6,7 @@ class DropDownComponent extends React.Component {
   componentWillMount () { this.setState({});}
 
   handleChange (selected) {
+    console.log("dropdown selected: " + selected);
     this.setState({value: selected });
     this.props.onChange(selected);
   }
