@@ -47,7 +47,11 @@ class Scroll extends React.Component{
               {
                 _.map(this.props.items, (item, index) => {
                   return <div key={index} className="assembly" style={assemblyStyles}>
-                    <div className="assembly-inner" style={assemblyInnerStyles}><p style={paragraphStyles}>{item}</p></div>
+                    <div className="assembly-inner" style={assemblyInnerStyles}><p style={paragraphStyles}>{item.ciName}</p>
+                    {
+                      <Assembly item={item}></Assembly>
+                    }
+                    </div>
                   </div>;
                 })
               }
