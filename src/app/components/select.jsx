@@ -10,7 +10,6 @@ class SelectComponent extends React.Component {
 
   handleChange(e) {
     var value = e.target.value;
-    console.log('changed value: ' + value);
     this.props.onChange(value);
     this.setState({selected: value});
   }
@@ -26,9 +25,7 @@ class SelectComponent extends React.Component {
       }
     );
     var divStyles = {
-      paddingLeft: '10px',
-      paddingRight: '10px',
-      paddingBottom: '20px'
+      padding: '0px 10px 2px 10px'
     }
     var selectStyles = {
       fontFamily: 'Helvetica Neue',

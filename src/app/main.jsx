@@ -18,7 +18,6 @@ class Main extends React.Component{
   }
 
   dropDownChange (org) {
-    console.log('org: ' + org);
     this.getAssemblies(org);
   }
 

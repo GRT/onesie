@@ -17,11 +17,9 @@ class Scroll extends React.Component{
     var scrollbarStyles = {borderRadius: 5};
     var assemblyStyles = {
       width: '100%',
-    	paddingBottom: '25%',
+    	padding: '0px 10px 25% 10px',
     	fontSize: '18px',
     	boxSizing: 'border-box',
-    	paddingLeft: '10px',
-      paddingRight: '10px',
       position: 'relative',
       color: '#d1d1e0'
     };
