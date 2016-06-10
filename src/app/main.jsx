@@ -23,7 +23,7 @@ class Main extends React.Component{
 
   getAssemblies (org) {
     assems(this.error,{ooOrganization:org}, (assemObjs) => {
-      this.setState({assemblies: _.map(assemObjs, 'ciName')});
+      this.setState({assemblies: assemObjs });
     });
   }
 

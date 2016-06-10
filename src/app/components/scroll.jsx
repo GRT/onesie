@@ -1,18 +1,10 @@
 import _ from 'lodash';
 import React from 'react';
 import ScrollArea from 'react-scrollbar';
-import ClusterToggleView from 'onesie-toggle-environment-block';
-
-var mockDataThumb1 = {
-  id: 1,
-  serverList: ['192.168.1.1' , '192.168.1.2'] ,
-  name: 'dev' ,
-  status: 'Success',
-  version: '1.5'
-};
-
+import Assembly from './assembly.jsx'
 
 class Scroll extends React.Component{
+
   render() {
     var scrollbarStyles = {borderRadius: 5};
     var assemblyStyles = {
@@ -59,7 +51,6 @@ class Scroll extends React.Component{
                   </div>;
                 })
               }
-              <ClusterToggleView mode="thumbnail" environment={mockDataThumb1}></ClusterToggleView>
             </ScrollArea>
         </div>
     );
