@@ -14,10 +14,12 @@ class Main extends React.Component{
     orgs(this.error, {}, (orgObjs) => {
       this.setState({orgs: _.map(orgObjs, 'name')});
       this.getAssemblies(this.state.orgs[0]);
+      this.setState({selectedOrg: this.state.orgs[0]});
     });
   }
 
   dropDownChange (org) {
+    this.setState({selectedOrg: org});
     this.getAssemblies(org);
   }
 
@@ -34,7 +36,8 @@ class Main extends React.Component{
       <div>
         <SelectComponent options={this.state.orgs || []}
                          onChange={this.dropDownChange.bind(this)} />
-        <ScrollArea  items={this.state.assemblies || []} />
+        <ScrollArea  items={this.state.assemblies || []} 
+                     organization={this.state.selectedOrg} />
       </div>
     );
   }
