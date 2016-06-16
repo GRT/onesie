@@ -9,13 +9,17 @@ import envs from './requests/get-environments';
 class Assembly extends React.Component{
   componentWillMount() { this.setState({}); }
 
+  componentWillReceiveProps(nextProps) {
+    this.getEnvironments(nextProps.item);
+  }
+
   componentDidMount() {
     this.getEnvironments(this.props.item);
   }
 
   getEnvironments(assem) {
     console.log('Getting Environments');
-    var org = assem.nsPath.replace('\/' , '')
+    var org = this.props.organization;
 
     envs(this.error,{ooOrganization:org , ooAssembly:assem.ciName}, (envsObjs) => {
       console.log('Environments Got');
