@@ -4,14 +4,19 @@ import ScrollArea from 'react-scrollbar';
 import Assembly from './assembly.jsx'
 
 class Scroll extends React.Component{
+  constructor(props) {
+    super(props);
 
-  render() {
-    var scrollbarStyles = {borderRadius: 5};
+    this.renderAssembies = this.renderAssembies.bind(this);
+  }
+
+  renderAssembies (item, index) {
+
     var assemblyStyles = {
       width: '100%',
-    	padding: '0px 10px 25% 10px',
-    	fontSize: '18px',
-    	boxSizing: 'border-box',
+      padding: '0px 10px 25% 10px',
+      fontSize: '18px',
+      boxSizing: 'border-box',
       position: 'relative',
       color: '#d1d1e0'
     };
@@ -33,6 +38,19 @@ class Scroll extends React.Component{
       paddingLeft: '20px'
     };
     return (
+          <div key={index} className="assembly" style={assemblyStyles}>
+            <div className="assembly-inner" style={assemblyInnerStyles}><p style={paragraphStyles}>{item.ciName}</p>
+              <Assembly item={item} organization={this.props.organization}></Assembly>
+            </div>
+          </div>
+          );
+  }
+
+
+
+  render() {
+    var scrollbarStyles = {borderRadius: 5};
+    return (
         <div>
             <ScrollArea
               className="area"
@@ -46,13 +64,7 @@ class Scroll extends React.Component{
               onScroll={this.handleScroll} >
               {
                 _.map(this.props.items, (item, index) => {
-                  return <div key={index} className="assembly" style={assemblyStyles}>
-                    <div className="assembly-inner" style={assemblyInnerStyles}><p style={paragraphStyles}>{item.ciName}</p>
-                    {
-                      <Assembly item={item}></Assembly>
-                    }
-                    </div>
-                  </div>;
+                  return this.renderAssembies(item, index);
                 })
               }
             </ScrollArea>
