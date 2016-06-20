@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import ClusterToggleView from 'onesie-toggle-environment-block';
-import envs from './requests/get-environments';
+import envs from '../requests/get-environments';
 
 
 
@@ -10,19 +10,19 @@ class Assembly extends React.Component{
   componentWillMount() { this.setState({}); }
 
   componentWillReceiveProps(nextProps) {
+    console.log('Assembly:  componentWillReceiveProps');
     this.getEnvironments(nextProps.item);
   }
 
   componentDidMount() {
+    console.log('Assembly:  componentDidMount');
     this.getEnvironments(this.props.item);
   }
 
   getEnvironments(assem) {
-    console.log('Getting Environments');
     var org = this.props.organization;
 
     envs(this.error,{ooOrganization:org , ooAssembly:assem.ciName}, (envsObjs) => {
-      console.log('Environments Got');
       this.setState({environments: envsObjs });
     });
   }
@@ -37,7 +37,7 @@ class Assembly extends React.Component{
       };
 
       return (
-        <ClusterToggleView mode="thumbnail" environment={data}></ClusterToggleView>
+        <ClusterToggleView key={index} mode="thumbnail" environment={data}></ClusterToggleView>
       );
     });
   }

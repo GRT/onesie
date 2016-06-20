@@ -2,20 +2,18 @@
 import React from 'react';
 import ScrollArea from './components/scroll.jsx';
 import SelectComponent from './components/select.jsx';
-import orgs from './components/requests/get-orgs';
-import assems from './components/requests/get-assemblies';
+
+import orgs from './requests/get-orgs';
+import assems from './requests/get-assemblies';
 import _ from 'lodash';
+
 
 
 class Main extends React.Component{
   componentWillMount() { this.setState({}); }
 
   componentDidMount() {
-    orgs(this.error, {}, (orgObjs) => {
-      this.setState({orgs: _.map(orgObjs, 'name')});
-      this.getAssemblies(this.state.orgs[0]);
-      this.setState({selectedOrg: this.state.orgs[0]});
-    });
+    //rootReducer.dispatch(this.props.getOrgs());
   }
 
   dropDownChange (org) {
@@ -33,14 +31,17 @@ class Main extends React.Component{
 
   render() {
     return (
-      <div>
-        <SelectComponent options={this.state.orgs || []}
-                         onChange={this.dropDownChange.bind(this)} />
-        <ScrollArea  items={this.state.assemblies || []} 
-                     organization={this.state.selectedOrg} />
-      </div>
+        <div>
+          <SelectComponent options={ _.map( this.props.organizations.items , 'name') }
+                           onChange={this.dropDownChange.bind(this)} />
+          <ScrollArea  items={this.state.assemblies || []} 
+                       organization={this.state.selectedOrg} />
+        </div>
     );
   }
 }
 
+
 export default Main;
+
+

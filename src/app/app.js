@@ -1,7 +1,21 @@
-'use strict';
-require('../static/favicon.ico');
 import Main from './main.jsx';
-import ReactDOM from 'react-dom';
-import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as actionCreators from './actions/actionCreators';
 
-ReactDOM.render(<Main/>, document.getElementById('main'));
+
+function mapStateToProps(state){
+  return {
+    organizations: state.organizations ,
+    assemblies: state.assemblies
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+
+const App = connect(mapStateToProps , mapDispatchToProps)(Main);
+
+export default App;
