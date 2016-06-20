@@ -1,7 +1,7 @@
 // Get Organizations
 export function getOrgs() {
 	return {
-		type: 'organization.GET'
+		type: 'organizations.GET'
 	}
 }
 
