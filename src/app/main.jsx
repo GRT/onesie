@@ -13,8 +13,13 @@ class Main extends React.Component{
   componentWillMount() { this.setState({}); }
 
   componentDidMount() {
-    //rootReducer.dispatch(this.props.getOrgs());
+    orgs(this.error, {}, (orgObjs) => {
+      this.props.setOrgs(orgObjs);
+      this.getAssemblies(orgObjs[0]);
+    }); 
   }
+
+  error (e) { console.log('Error' + e ); };
 
   dropDownChange (org) {
     this.setState({selectedOrg: org});
@@ -22,8 +27,8 @@ class Main extends React.Component{
   }
 
   getAssemblies (org) {
-    assems(this.error,{ooOrganization:org}, (assemObjs) => {
-      this.setState({assemblies: assemObjs });
+    assems(this.error,{ooOrganization:org.name}, (assemObjs) => {
+      this.props.setAssemblies(assemObjs , org);
     });
   }
 
@@ -34,8 +39,8 @@ class Main extends React.Component{
         <div>
           <SelectComponent options={ _.map( this.props.organizations.items , 'name') }
                            onChange={this.dropDownChange.bind(this)} />
-          <ScrollArea  items={this.state.assemblies || []} 
-                       organization={this.state.selectedOrg} />
+          <ScrollArea  assemblies={this.props.assemblies} />
+
         </div>
     );
   }
