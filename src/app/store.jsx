@@ -8,7 +8,7 @@ import rootReducer from './reducers/index';
 
 
 const defaultState = {
-	organizations: {selected: null , items: []} ,
+	organizations: { items: []} ,
 	assemblies: {organization: null , items: []}
 }
 
