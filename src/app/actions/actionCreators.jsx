@@ -1,16 +1,25 @@
 // Get Organizations
-export function getOrgs() {
+export function setOrgs(orgs) {
 	return {
-		type: 'organizations.GET'
+		type: 'organizations.SET.ORGS',
+		organizations: orgs
 	}
 }
 
 
-// Get Assemblies
-export function getAssems(org) {
+export function setSelectedOrg(org) {
 	return {
-		type: 'assemblies.GET' ,
-		org: org
+		type: 'organizations.SET.SELECTED',
+		selectedOrganization: org
+	}
+}
+
+// Get Assemblies
+export function setAssemblies(assems, org) {
+	return {
+		type: 'assemblies.SET' ,
+		assemblies: assems,
+		org: org,
 	}
 }
 
