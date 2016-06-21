@@ -39,12 +39,12 @@ class Scroll extends React.Component {
   }
 
   renderAssembies (item, index) {
-
+    //<Assembly key={index} item={item} organization={this.props.assemblies.organization}></Assembly>
     return (
           <div key={index} className="assembly" style={assemblyStyles}>
             <div className="assembly-inner" style={assemblyInnerStyles}>
               <p style={paragraphStyles}>{item.ciName}</p>
-              <Assembly key={index} item={item} organization={this.props.organization}></Assembly>
+              Assembly goes here
             </div>
           </div>
           );
@@ -61,7 +61,7 @@ class Scroll extends React.Component {
               minScrollSize={40}
               onScroll={this.handleScroll} >
               {
-                _.map(this.props.items, (item, index) => {
+                _.map(this.props.assemblies.items, (item, index) => {
                   return this.renderAssembies(item, index);
                 })
               }
@@ -72,7 +72,7 @@ class Scroll extends React.Component {
 }
 
 Scroll.propTypes = {
-  items: React.PropTypes.array.isRequired
+  assemblies: React.PropTypes.object.isRequired
 };
 
 export default Scroll;
