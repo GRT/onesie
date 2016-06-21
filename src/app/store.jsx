@@ -8,8 +8,8 @@ import rootReducer from './reducers/index';
 
 
 const defaultState = {
-	organizations: { items: [] } ,
-	assemblies: {}
+	organizations: {selected: null , items: []} ,
+	assemblies: {organization: null , items: []}
 }
 
 const store = createStore(rootReducer , defaultState);
