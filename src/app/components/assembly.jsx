@@ -18,21 +18,19 @@ class Assembly extends React.Component{
   }
 
   getEnvironments(assem) {
-    console.log('Getting Environments');
     var org = this.props.organization;
 
     envs(this.error,{ooOrganization:org , ooAssembly:assem.ciName}, (envsObjs) => {
-      console.log('Environments Got');
       this.setState({environments: envsObjs });
     });
   }
 
   renderEnvironments() {
-    return _.map(this.state.environments, (item, index) => {
+    return _.map(this.state.environments, (item) => {
       var data = {
         id: item.ciId ,
         name: item.ciName , 
-        status: "Success",
+        status: 'Success',
         version: item.impl
       };
 
@@ -42,7 +40,7 @@ class Assembly extends React.Component{
     });
   }
 
-  error (e) { console.log('Error' + e ); }
+  error (e) { throw e; }
 
   render() {
     return (
@@ -57,7 +55,8 @@ class Assembly extends React.Component{
 }
 
 Assembly.propTypes = {
-  item: React.PropTypes.object.isRequired
+  item: React.PropTypes.object.isRequired,
+  organization: React.PropTypes.object.isRequired
 };
 
 export default Assembly;

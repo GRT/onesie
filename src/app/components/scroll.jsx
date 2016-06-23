@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import ScrollArea from 'react-scrollbar';
-import Assembly from './assembly.jsx'
+import Assembly from './assembly.jsx';
 
 class Scroll extends React.Component{
   constructor(props) {
@@ -74,7 +74,8 @@ class Scroll extends React.Component{
 }
 
 Scroll.propTypes = {
-  items: React.PropTypes.array.isRequired
+  items: React.PropTypes.array.isRequired,
+  organization: React.PropTypes.object.isRequired
 };
 
 export default Scroll;

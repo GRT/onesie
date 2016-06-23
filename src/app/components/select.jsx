@@ -21,12 +21,12 @@ class SelectComponent extends React.Component {
           <option key={option} value={option}>
                   {option}
           </option>
-        )
+        );
       }
     );
     var divStyles = {
       padding: '0px 10px 2px 10px'
-    }
+    };
     var selectStyles = {
       fontFamily: 'Helvetica Neue',
       fontSize: '20px',
@@ -44,7 +44,7 @@ class SelectComponent extends React.Component {
       fontWeight: 'bold',
       color: '#111',
       paddingLeft: '5px'
-    }
+    };
     return (
       <div style={divStyles}>
         <p style={paragraphStyles}>Select your organization</p>
