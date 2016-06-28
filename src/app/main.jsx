@@ -7,8 +7,6 @@ import orgs from './requests/get-orgs';
 import assems from './requests/get-assemblies';
 import _ from 'lodash';
 
-
-
 class Main extends React.Component{
   componentWillMount() { this.setState({}); }
 
@@ -22,7 +20,6 @@ class Main extends React.Component{
   error (e) { console.log('Error' + e ); };
 
   dropDownChange (org) {
-    this.setState({selectedOrg: org});
     this.getAssemblies(org);
   }
 
@@ -37,7 +34,8 @@ class Main extends React.Component{
   render() {
     return (
         <div>
-          <SelectComponent options={ _.map( this.props.organizations.items , 'name') }
+          <SelectComponent options={ this.props.organizations.items }
+                           optionLabel='name'
                            onChange={this.dropDownChange.bind(this)} />
           <ScrollArea  assemblies={this.props.assemblies} />
 
