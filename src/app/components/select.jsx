@@ -10,16 +10,25 @@ class SelectComponent extends React.Component {
 
   handleChange(e) {
     var value = e.target.value;
-    this.props.onChange(value);
+    if (this.props.optionLabel) {
+      this.props.onChange(this.props.options[value]);
+    } else {
+      this.props.onChange(value);
+    }
     this.setState({selected: value});
   }
 
   render () {
+    var label = this.props.optionLabel
     var options = this.props.options.map(
-      function(option) {
+      function(option , index) {
+        var opt = option
+        if(label) {
+          opt = option[label];
+        }
         return (
-          <option key={option} value={option}>
-                  {option}
+          <option key={opt} value={label? index:opt}>
+                  {opt}
           </option>
         )
       }
@@ -57,6 +66,7 @@ class SelectComponent extends React.Component {
 }
 
 SelectComponent.propTypes = {
+  optionLabel: React.PropTypes.string,
   options: React.PropTypes.array.isRequired,
   onChange: React.PropTypes.func.isRequired
 };
