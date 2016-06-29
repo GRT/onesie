@@ -3,32 +3,38 @@ import React from 'react';
 import ClusterToggleView from 'onesie-toggle-environment-block';
 import envs from '../requests/get-environments';
 
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions/actionCreators';
 
 
+function mapStateToProps(state){
+  return {
+    organizations: state.organizations
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
 
 class Assembly extends React.Component{
-  componentWillMount() { this.setState({}); }
-
-  componentWillReceiveProps(nextProps) {
-    console.log('Assembly:  componentWillReceiveProps');
-    this.getEnvironments(nextProps.item);
-  }
 
   componentDidMount() {
-    console.log('Assembly:  componentDidMount');
     this.getEnvironments(this.props.item);
+
   }
 
   getEnvironments(assem) {
     var org = this.props.organization;
 
     envs(this.error,{ooOrganization:org , ooAssembly:assem.ciName}, (envsObjs) => {
-      this.setState({environments: envsObjs });
+      this.props.setEnvironments(org, this.props.item , envsObjs);
     });
   }
 
   renderEnvironments() {
-    return _.map(this.state.environments, (item, index) => {
+    return _.map(this.props.item.environments, (item, index) => {
       var data = {
         id: item.ciId ,
         name: item.ciName , 
@@ -59,5 +65,8 @@ class Assembly extends React.Component{
 Assembly.propTypes = {
   item: React.PropTypes.object.isRequired
 };
+
+Assembly = connect(mapStateToProps , mapDispatchToProps)(Assembly);
+
 
 export default Assembly;
