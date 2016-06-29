@@ -10,6 +10,6 @@ const fakeAjax = function fakeAjax () {
 describe('<Scroll />', () => {
   const scroll = mount(<Scroll ajaxFunc={fakeAjax} ajaxParams={{}} />);
   const divs = scroll.find('div');
-  it('has three divs', () => { expect(divs).to.have.length.of(11); });
+  it('has three divs', () => { expect(divs).to.have.length.of(3); });
 
 });

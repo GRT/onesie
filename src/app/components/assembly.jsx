@@ -38,7 +38,7 @@ class Assembly extends React.Component{
       var data = {
         id: item.ciId ,
         name: item.ciName , 
-        status: "Success",
+        status: 'Success',
         version: item.impl
       };
 
@@ -48,7 +48,7 @@ class Assembly extends React.Component{
     });
   }
 
-  error (e) { console.log('Error' + e ); }
+  error (e) { throw e; }
 
   render() {
     return (
@@ -63,7 +63,8 @@ class Assembly extends React.Component{
 }
 
 Assembly.propTypes = {
-  item: React.PropTypes.object.isRequired
+  item: React.PropTypes.object.isRequired,
+  organization: React.PropTypes.object.isRequired
 };
 
 Assembly = connect(mapStateToProps , mapDispatchToProps)(Assembly);
