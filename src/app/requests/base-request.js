@@ -1,4 +1,4 @@
-import config from '../../../../config';
+import config from '../../../config';
 
 const doGet = function doGet(err, path, callback) {
   const r = new XMLHttpRequest();

@@ -3,16 +3,7 @@ import React from 'react';
 import ScrollArea from 'react-scrollbar';
 import Assembly from './assembly.jsx';
 
-class Scroll extends React.Component{
-  constructor(props) {
-    super(props);
-
-    this.renderAssembies = this.renderAssembies.bind(this);
-  }
-
-  renderAssembies (item, index) {
-
-    var assemblyStyles = {
+const assemblyStyles = {
       width: '100%',
       padding: '0px 10px 25% 10px',
       fontSize: '18px',
@@ -20,7 +11,8 @@ class Scroll extends React.Component{
       position: 'relative',
       color: '#d1d1e0'
     };
-    var assemblyInnerStyles = {
+
+const assemblyInnerStyles = {
       position: 'absolute',
       left: '10px',
       right: '10px',
@@ -30,40 +22,45 @@ class Scroll extends React.Component{
       border: '1px solid gray',
       boxShadow: '0 2px 4px rgba(0, 0, 0, .48)'
     };
-    var paragraphStyles = {
+
+const paragraphStyles = {
       fontFamily: 'Helvetica Neue',
       fontSize: '18px',
       fontWeight: 'bold',
       color: '#111',
       paddingLeft: '20px'
     };
+
+class Scroll extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.renderAssembies = this.renderAssembies.bind(this);
+  }
+
+  renderAssembies (item, index) {
     return (
           <div key={index} className="assembly" style={assemblyStyles}>
-            <div className="assembly-inner" style={assemblyInnerStyles}><p style={paragraphStyles}>{item.ciName}</p>
-              <Assembly item={item} organization={this.props.organization}></Assembly>
+            <div className="assembly-inner" style={assemblyInnerStyles}>
+              <p style={paragraphStyles}>{item.ciName}</p>
+                <Assembly key={index} item={item} organization={this.props.organization}></Assembly>
             </div>
           </div>
           );
   }
 
-
-
   render() {
-    var scrollbarStyles = {borderRadius: 5};
+    
     return (
         <div>
             <ScrollArea
               className="area"
               contentClassName="content"
-              verticalScrollbarStyle={scrollbarStyles}
-              verticalContainerStyle={scrollbarStyles}
-              horizontalScrollbarStyle={scrollbarStyles}
-              horizontalContainerStyle={scrollbarStyles}
               smoothScrolling= {true}
               minScrollSize={40}
               onScroll={this.handleScroll} >
               {
-                _.map(this.props.items, (item, index) => {
+                _.map(this.props.assemblies, (item, index) => {
                   return this.renderAssembies(item, index);
                 })
               }
@@ -74,8 +71,8 @@ class Scroll extends React.Component{
 }
 
 Scroll.propTypes = {
-  items: React.PropTypes.array.isRequired,
-  organization: React.PropTypes.object.isRequired
+  assemblies: React.PropTypes.array.isRequired,
+  organization: React.PropTypes.string.isRequired
 };
 
 export default Scroll;

@@ -2,45 +2,59 @@
 import React from 'react';
 import ScrollArea from './components/scroll.jsx';
 import SelectComponent from './components/select.jsx';
-import orgs from './components/requests/get-orgs';
-import assems from './components/requests/get-assemblies';
+
+import orgs from './requests/get-orgs';
+import assems from './requests/get-assemblies';
 import _ from 'lodash';
 
-
 class Main extends React.Component{
-  componentWillMount() { this.setState({}); }
 
   componentDidMount() {
     orgs(this.error, {}, (orgObjs) => {
-      this.setState({orgs: _.map(orgObjs, 'name')});
-      this.getAssemblies(this.state.orgs[0]);
-      this.setState({selectedOrg: this.state.orgs[0]});
-    });
+      this.props.setOrgs(orgObjs);
+    }); 
   }
+
+  error (e) { console.log('Error' + e ); };
 
   dropDownChange (org) {
-    this.setState({selectedOrg: org});
-    this.getAssemblies(org);
+    this.props.setSelectedOrg(org);
+    this.loadAssemblies(org);
   }
 
-  getAssemblies (org) {
+  loadAssemblies (org) {
     assems(this.error,{ooOrganization:org}, (assemObjs) => {
-      this.setState({assemblies: assemObjs });
+      this.props.setAssemblies(assemObjs , org);
     });
   }
+
+
+  getAssemblies() {
+    const items = this.props.organizations.items;
+    const selectedOrg = this.props.organizations.selected;
+
+    if(!items || !selectedOrg){
+      return [];
+    }
+    
+    return items[selectedOrg].assemblies;
+  }
+
 
   error (e) { console.log('Error' + e ); }
 
   render() {
+    
     return (
-      <div>
-        <SelectComponent options={this.state.orgs || []}
-                         onChange={this.dropDownChange.bind(this)} />
-        <ScrollArea  items={this.state.assemblies || []} 
-                     organization={this.state.selectedOrg} />
-      </div>
+        <div>
+          <SelectComponent options={ Object.keys(this.props.organizations.items) }
+                           onChange={this.dropDownChange.bind(this)} />
+            <ScrollArea  assemblies={this.getAssemblies()} organization={this.props.organizations.selected || ''} />
+        </div>
     );
   }
 }
 
 export default Main;
+
+
