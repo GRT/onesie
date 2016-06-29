@@ -6,8 +6,7 @@ import * as actionCreators from './actions/actionCreators';
 
 function mapStateToProps(state){
   return {
-    organizations: state.organizations ,
-    assemblies: state.assemblies
+    organizations: state.organizations
   }
 }
 

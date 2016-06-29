@@ -4,12 +4,9 @@ import { browserHistory } from 'react-router';
 
 import rootReducer from './reducers/index';
 
-//Create default data
-
-
+//Create default store
 const defaultState = {
-	organizations: {selected: null , items: []} ,
-	assemblies: {organization: null , items: []} //current assembly
+	organizations: {selected: null , items: {}}
 }
 
 const store = createStore(rootReducer , defaultState);

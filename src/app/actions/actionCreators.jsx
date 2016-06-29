@@ -1,11 +1,9 @@
-// Get Organizations
 export function setOrgs(orgs) {
 	return {
 		type: 'organizations.SET.ORGS',
 		organizations: orgs
 	}
 }
-
 
 export function setSelectedOrg(org) {
 	return {
@@ -14,20 +12,20 @@ export function setSelectedOrg(org) {
 	}
 }
 
-// Get Assemblies
 export function setAssemblies(assems, org) {
+	console.log(assems);
 	return {
-		type: 'assemblies.SET' ,
+		type: 'organizations.SET.ASSEMBLIES' ,
 		assemblies: assems,
-		org: org,
+		organization: org,
 	}
 }
 
-//Get Environment
-export function getEnvs(assems , org) {
+export function setEnvironments(org, assem , envs) {
 	return {
-		type: 'assemblies.GET',
-		org: org,
-		assems: assems
+		type: 'organizations.SET.ENVS',
+		organization: org,
+		assembly: assem,
+		environments: envs,
 	}
 }
