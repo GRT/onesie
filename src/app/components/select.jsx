@@ -9,25 +9,21 @@ class SelectComponent extends React.Component {
   componentWillMount () { this.setState({});}
 
   handleChange(e) {
-    var value = e.target.value;
+    const value = e.target.value;
     this.props.onChange(value);
-    this.setState({selected: value});
+    this.setState({selected: value, choice: true});
+  }
+
+  selectorLabel () {
+    return this.state.choice ? '' : <option value="none" selected>Select Organization</option>;
   }
 
   render () {
-    var options = this.props.options.map(
-      function(option) {
-        return (
-          <option key={option} value={option}>
-                  {option}
-          </option>
-        );
-      }
+    const options = this.props.options.map(
+      option => <option key={option} value={option}> {option} </option>
     );
-    var divStyles = {
-      padding: '0px 10px 2px 10px'
-    };
-    var selectStyles = {
+
+    const selectStyles = {
       fontFamily: 'Helvetica Neue',
       fontSize: '20px',
       color: '#111',
@@ -38,18 +34,12 @@ class SelectComponent extends React.Component {
       border: '1px solid gray',
       boxShadow: '0 2px 4px rgba(0, 0, 0, .48)'
     };
-    var paragraphStyles = {
-      fontFamily: 'Helvetica Neue',
-      fontSize: '18px',
-      fontWeight: 'bold',
-      color: '#111',
-      paddingLeft: '5px'
-    };
+
     return (
-      <div style={divStyles}>
-        <p style={paragraphStyles}>Select your organization</p>
+      <div style={{padding: '0px 10px 2px 10px'}}>
         <select style={selectStyles} onChange={this.handleChange.bind(this)}>
-         {options}
+          {this.selectorLabel()}
+          {options}
         </select>
       </div>
     );
