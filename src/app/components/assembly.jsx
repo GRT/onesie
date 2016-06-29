@@ -64,7 +64,7 @@ class Assembly extends React.Component{
 
 Assembly.propTypes = {
   item: React.PropTypes.object.isRequired,
-  organization: React.PropTypes.object.isRequired
+  organization: React.PropTypes.string.isRequired
 };
 
 Assembly = connect(mapStateToProps , mapDispatchToProps)(Assembly);
