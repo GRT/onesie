@@ -12,8 +12,6 @@ class Main extends React.Component{
   componentDidMount() {
     orgs(this.error, {}, (orgObjs) => {
       this.props.setOrgs(orgObjs);
-      this.loadAssemblies(orgObjs[0].name);
-      this.props.setSelectedOrg(orgObjs[0].name);
     }); 
   }
 
