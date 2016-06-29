@@ -1,4 +1,4 @@
- import _ from 'lodash';
+import _ from 'lodash';
 import React from 'react';
 import ScrollArea from 'react-scrollbar';
 import Assembly from './assembly.jsx';
