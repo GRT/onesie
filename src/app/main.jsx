@@ -8,42 +8,54 @@ import assems from './requests/get-assemblies';
 import _ from 'lodash';
 
 class Main extends React.Component{
-  componentWillMount() { this.setState({}); }
 
   componentDidMount() {
     orgs(this.error, {}, (orgObjs) => {
       this.props.setOrgs(orgObjs);
-      this.getAssemblies(orgObjs[0]);
+      this.loadAssemblies(orgObjs[0].name);
+      this.props.setSelectedOrg(orgObjs[0].name);
     }); 
   }
 
   error (e) { console.log('Error' + e ); };
 
   dropDownChange (org) {
-    this.getAssemblies(org);
+    this.props.setSelectedOrg(org);
+    this.loadAssemblies(org);
   }
 
-  getAssemblies (org) {
-    assems(this.error,{ooOrganization:org.name}, (assemObjs) => {
+  loadAssemblies (org) {
+    assems(this.error,{ooOrganization:org}, (assemObjs) => {
       this.props.setAssemblies(assemObjs , org);
     });
   }
 
+
+  getAssemblies() {
+    const items = this.props.organizations.items;
+    const selectedOrg = this.props.organizations.selected;
+
+    if(!items || !selectedOrg){
+      return [];
+    }
+    
+    return items[selectedOrg].assemblies;
+  }
+
+
   error (e) { console.log('Error' + e ); }
 
   render() {
+    
     return (
         <div>
-          <SelectComponent options={ this.props.organizations.items }
-                           optionLabel='name'
+          <SelectComponent options={ Object.keys(this.props.organizations.items) }
                            onChange={this.dropDownChange.bind(this)} />
-          <ScrollArea  assemblies={this.props.assemblies} />
-
+            <ScrollArea  assemblies={this.getAssemblies()} organization={this.props.organizations.selected || ''} />
         </div>
     );
   }
 }
-
 
 export default Main;
 
