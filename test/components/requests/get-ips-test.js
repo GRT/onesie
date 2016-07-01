@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import ips from '../../../src/app/components/requests/get-ips'
+import ips from '../../../src/app/requests/get-ips'
 
 describe('IPs request module', () => {
   ips(null, {}, (res) => {

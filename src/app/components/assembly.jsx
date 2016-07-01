@@ -11,7 +11,7 @@ import * as actionCreators from '../actions/actionCreators';
 function mapStateToProps(state){
   return {
     organizations: state.organizations
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -64,10 +64,11 @@ class Assembly extends React.Component{
 
 Assembly.propTypes = {
   item: React.PropTypes.object.isRequired,
-  organization: React.PropTypes.string.isRequired
+  organization: React.PropTypes.string.isRequired,
+  setEnvironments: React.PropTypes.func.isRequired
 };
 
-Assembly = connect(mapStateToProps , mapDispatchToProps)(Assembly);
+const ConnectedAssembly = connect(mapStateToProps , mapDispatchToProps)(Assembly);
 
 
-export default Assembly;
+export default ConnectedAssembly;

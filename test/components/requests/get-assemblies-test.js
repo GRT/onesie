@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import assem from '../../../src/app/components/requests/get-assemblies'
+import assem from '../../../src/app/requests/get-assemblies'
 
 describe('Org request module', () => {
   assem(null, {ooOrganization:'GRT'}, (res) => {
