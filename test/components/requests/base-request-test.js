@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { doGet } from '../../../src/app/components/requests/base-request';
+import { doGet } from '../../../src/app/requests/base-request';
 
 describe('Base request module', () => {
   it('should make some kind of request', () => {

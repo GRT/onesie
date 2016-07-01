@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import envs from '../../../src/app/components/requests/get-environments';
+import envs from '../../../src/app/requests/get-environments';
 
 describe('Environments request module', () => {
   envs(null, (res) => {
