@@ -15,12 +15,12 @@ class SelectComponent extends React.Component {
   }
 
   selectorLabel () {
-    return this.state.choice ? '' : <option value="none" selected>Select Organization</option>;
+    return this.state.choice ? undefined : <option value="none">Select Organization</option>;
   }
 
   render () {
     const options = this.props.options.map(
-      option => <option key={option} value={option}> {option} </option>
+      option => <option key={option} value={option}>{option}</option>
     );
 
     const selectStyles = {
@@ -37,7 +37,10 @@ class SelectComponent extends React.Component {
 
     return (
       <div style={{padding: '0px 10px 2px 10px'}}>
-        <select style={selectStyles} onChange={this.handleChange.bind(this)}>
+        <select style={selectStyles}
+                defaultValue={'none'}
+                value={this.state.selected}
+                onChange={this.handleChange.bind(this)}>
           {this.selectorLabel()}
           {options}
         </select>
