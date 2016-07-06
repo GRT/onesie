@@ -1,20 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
 import ClusterToggleView from 'onesie-toggle-environment-block';
-import envs from '../requests/get-environments';
-
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as actionCreators from '../actions/actionCreators';
 
 
-function mapStateToProps(state){
-  return { organizations: state.organizations };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch);
-}
 
 const assemblyInnerStyles = {
   margin:'10px 10px 10px 10px',
@@ -32,15 +20,6 @@ const paragraphStyles = {
 };
 
 class Assembly extends React.Component{
-
-  componentDidMount() { this.getEnvironments(this.props.item); }
-
-  getEnvironments(assem) {
-    const org = this.props.organization;
-    envs(this.error,{ooOrganization:org , ooAssembly:assem.ciName}, (envsObjs) => {
-      this.props.setEnvironments(org, this.props.item , envsObjs);
-    });
-  }
 
   renderEnvironments() {
     return _.map(this.props.item.environments, (item, index) => {
@@ -68,10 +47,7 @@ class Assembly extends React.Component{
 }
 
 Assembly.propTypes = {
-  item: React.PropTypes.object.isRequired,
-  organization: React.PropTypes.string.isRequired,
-  setEnvironments: React.PropTypes.func.isRequired
+  item: React.PropTypes.object.isRequired
 };
 
-const ConnectedAssembly = connect(mapStateToProps , mapDispatchToProps)(Assembly);
-export default ConnectedAssembly;
+export default Assembly;
