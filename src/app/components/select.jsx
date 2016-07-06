@@ -25,13 +25,30 @@ class SelectComponent extends React.Component {
     );
 
     const selectStyles = {
-      '@media screen and (max-width: 800px)': {
-        height: '40px'
+      '@media screen and (min-width:320px) and (max-width:479px)': {
+        /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+        height:'200px'
       },
-      '@media screen and (min-width: 801px)': {
-        height: '100px'
+      '@media screen and (min-width:480px) and (max-width:599px)': {
+        /* smartphones, Android phones, landscape iPhone */
+        height:'200px'
       },
-      fontFamily: 'Helvetica Neue',
+      '@media screen and (min-width:600px) and (max-width:800px)': {
+        /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+        height:'200px'
+      },
+      '@media screen and (min-width:801px) and (max-width:1024px)': {
+        /* tablet, landscape iPad, lo-res laptops ands desktops */
+        height:'40px'
+      },
+      '@media screen and (min-width:1025px) and (max-width:1280px)': {
+        /* big landscape tablets, laptops, and desktops */
+        height:'40px'
+      },
+      '@media screen and (min-width:1281px)': {
+        /* hi-res laptops and desktops */
+        height:'40px'
+      },
       fontSize: '20px',
       color: '#111',
       width: '100%',
