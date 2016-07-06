@@ -5,9 +5,15 @@ import SelectComponent from './components/select.jsx';
 
 import orgs from './requests/get-orgs';
 import assems from './requests/get-assemblies';
+import envs from './requests/get-environments';
 import _ from 'lodash';
 
 class Main extends React.Component{
+  constructor(props) {
+    super(props);
+    this.getEnvironments = this.getEnvironments.bind(this);
+    this.dropDownChange = this.dropDownChange.bind(this)
+  }
 
   componentDidMount() {
     orgs(this.error, {}, (orgObjs) => {
@@ -23,11 +29,21 @@ class Main extends React.Component{
   }
 
   loadAssemblies (org) {
+    var classThis = this;
     assems(this.error,{ooOrganization:org}, (assemObjs) => {
       this.props.setAssemblies(assemObjs , org);
+      assemObjs.forEach(function(assem) {
+        classThis.getEnvironments(assem);
+      });
     });
   }
 
+  getEnvironments(assem) {
+    const org = this.props.organizations.selected;
+    envs(this.error,{ooOrganization:org , ooAssembly:assem.ciName}, (envsObjs) => {
+      this.props.setEnvironments(org, assem , envsObjs);
+    });
+  }
 
   getAssemblies() {
     const items = this.props.organizations.items;
@@ -36,7 +52,6 @@ class Main extends React.Component{
     if(!items || !selectedOrg){
       return [];
     }
-    
     return items[selectedOrg].assemblies;
   }
 
@@ -48,7 +63,7 @@ class Main extends React.Component{
     return (
         <div>
           <SelectComponent options={ Object.keys(this.props.organizations.items) }
-                           onChange={this.dropDownChange.bind(this)} />
+                           onChange={this.dropDownChange} />
             <ScrollArea  assemblies={this.getAssemblies()} organization={this.props.organizations.selected || ''} />
         </div>
     );
