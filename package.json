@@ -18,6 +18,7 @@
   "dependencies": {
     "babel-core": "^6.4.5",
     "onesie-toggle-environment-block": "latest",
+    "radium": "^0.17.1",
     "react": "^0.14.7",
     "react-addons-update": "^15.2.0",
     "react-dom": "^0.14.7",
