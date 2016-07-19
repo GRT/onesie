@@ -7,7 +7,7 @@ import * as actionCreators from './actions/actionCreators';
 function mapStateToProps(state){
   return {
     organizations: state.organizations
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

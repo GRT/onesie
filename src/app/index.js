@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 
 import { Provider } from 'react-redux';
-import store, { history } from './store';
+import store from './store';
 
 const router = (
 	<Provider store={store}>

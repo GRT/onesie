@@ -11,7 +11,6 @@ import {doGet} from './base-request';
  *
  * {
  *  ooOrganization : 'SomeOrg',
- *  ooOrganization : 'SomeOrg',
  * }
  *
  * @param callback  - callback
