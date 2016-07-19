@@ -16,9 +16,7 @@ class Main extends React.Component{
   }
 
   componentDidMount() {
-    orgs(this.error, {}, (orgObjs) => {
-      this.props.setOrgs(orgObjs);
-    }); 
+    orgs(this.error, orgObjs => { this.props.setOrgs(orgObjs); });
   }
 
   error (e) { console.log('Error' + e ); };
