@@ -30,7 +30,46 @@ class Assembly extends React.Component{
         version: item.impl
       };
 
-      return (<ClusterToggleView key={index} mode="thumbnail" environment={data}/>);
+      const thumbElem =( 
+        <div>
+          <h3>{data.name}</h3>
+          <div>
+            <div style={{float:'left'}}>
+              {data.version}
+            </div>
+            <div style={{float:'right' , textAlign:'right'}}>
+              {data.status}
+              </div>
+          </div>
+      </div> );
+
+      const thumbStyle = {
+        backgroundColor: '#FF0000'
+      };
+
+      const detailStyle = {
+        backgroundColor: '#0000FF'
+      };
+
+      const detailElem = ( 
+        <div>
+        <h1>Detail View: {data.name}</h1>
+          <div>
+            <div style={{float:'left'}}>
+              {data.version}
+            </div>
+            <div style={{float:'right' , textAlign:'right'}}>
+              {data.status}
+              </div>
+          </div>
+      </div> );
+
+      return (<ClusterToggleView key={index} mode="thumbnail" 
+                  environment={data} 
+                  thumbViewStyle={thumbStyle}
+                  detailViewStyle={detailStyle}
+                  thumbElement={thumbElem}
+                  detailElement={detailElem}/>);
     });
   }
 
