@@ -1,6 +1,5 @@
-//import {doGet} from './base-request';
-//import config from '../../../../config';
-//import join from 'url-join';
+import {doGet} from './base-request';
+
 
 /**
  * @param error - error callback
@@ -17,8 +16,10 @@
  * @param callback  - callback
  */
 export default function (error, params, callback) {
-  callback(['213.324.34',
-            '214.34.34',
-            '234.324.23',
-            '134.32.234']);
+  const path = params.ooOrganization +
+    '/assemblies/' + params.ooAssembly +
+    '/operations' + '/environments/' + params.ooEnvironment +
+    '/platforms/' + params.ooPlatform +
+    'components/compute/instances.json?instances_state=all';
+  doGet(error, path, assemblyArray => { callback(assemblyArray); });
 }

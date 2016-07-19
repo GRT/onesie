@@ -17,5 +17,5 @@ import {doGet} from './base-request';
  */
 export default function (error, params, callback) {
   const path = '/' + params.ooOrganization + '/assemblies.json';
-  doGet(error,path, (assemblyArray) => { callback(assemblyArray); });
+  doGet(error,path, assemblyArray => { callback(assemblyArray); });
 }
