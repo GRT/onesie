@@ -7,9 +7,9 @@ function organizations(state = {} , action) {
 
   switch(action.type){
   case namespace +'.SET.ORGS':
-    var orgObj = {};
+    const orgObj = {};
 
-    action.organizations.forEach(function(org) {
+    action.organizations.forEach( org => {
       orgObj[org.name] = { assemblies: [] };
     });
 
@@ -21,16 +21,16 @@ function organizations(state = {} , action) {
     break;
 
   case namespace +'.SET.ASSEMBLIES':
-    var setOrgAssemsObj = {items: {}};
+    const setOrgAssemsObj = {items: {}};
     setOrgAssemsObj.items[action.organization] = {$set: {assemblies: action.assemblies}};
     state = update(state, setOrgAssemsObj);
     break;
 
   case namespace + '.SET.ENVS':
-    var setAssemsEnvsObj = {items: {}};
-    var assems = state.items[action.organization].assemblies;
+    const setAssemsEnvsObj = {items: {}};
+    const assems = state.items[action.organization].assemblies;
 
-    var updatedAssems = _.map( assems, function(item){
+    const updatedAssems = _.map( assems, item => {
       //TO Do: This should be changed to ciId, need to updated static data
       if(item.ciName === action.assembly.ciName){
         item.environments = action.environments;
@@ -46,7 +46,5 @@ function organizations(state = {} , action) {
 
   return state;
 }
-
-
 
 export default organizations;
