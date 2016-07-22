@@ -11,7 +11,7 @@ class Scroll extends React.Component {
   }
 
   renderAssembies (item, index) {
-    return ( <Assembly key={index} item={item} organization={this.props.organization}/> );
+    return ( <Assembly key={index} item={item}/> );
   }
 
   render() {
@@ -27,8 +27,7 @@ class Scroll extends React.Component {
 }
 
 Scroll.propTypes = {
-  assemblies: React.PropTypes.array.isRequired,
-  organization: React.PropTypes.string.isRequired
+  assemblies: React.PropTypes.array.isRequired
 };
 
 export default Scroll;

@@ -4,7 +4,8 @@
   "description": "",
   "main": "",
   "scripts": {
-    "test": "mocha test/.setup.js test/**/*-test.js; npm run lint",
+    "test": "npm run unit; npm run lint",
+    "unit": "mocha test/.setup.js $(find ./test -name '*-test.js')",
     "build": "npm test; webpack",
     "serve": "webpack-dev-server",
     "lint": "eslint ./src/**/*.js*",
