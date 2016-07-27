@@ -2,8 +2,6 @@ import _ from 'lodash';
 import React from 'react';
 import ClusterToggleView from 'onesie-toggle-environment-block';
 
-
-
 const assemblyInnerStyles = {
   margin:'10px 10px 10px 10px',
   height: 'auto',
