@@ -6,8 +6,25 @@ class ThumbView extends React.Component {
     super(props);
   }
 
+  renderPlatforms() {
+    const data = this.props.data;
+    return _.map(data.platforms, function(plat, index){
+              return (
+                <div key={index} style={{width: '100%'}}>
+                  <div style={{width: '100%' , fontWeight: 'bold', fontSize: '.75em'}}>
+                    <div style={{float: 'left'}}>{plat.ciName}</div>
+                    <div style={{float: 'right'}}>{plat.ciAttributes.version}.VER</div>
+                  </div>
+                  <div style={{width: '100%' , clear: 'both', fontSize: '.5em'}}>
+                    Put IPs here
+                  </div>
+                </div>);
+              });
+  }
+
   render() {
     const data = this.props.data;
+
     return (
       <div className="thumbView" style={{ display: 'flex' , flexDirection: 'column' , flexGrow: '1'}}>
         {/* Title */}
@@ -22,7 +39,7 @@ class ThumbView extends React.Component {
 
         {/* Body */}
         <div className="thumbBody" style={{fontSize: '1em' , width: '100%' , height: 'auto', flexGrow: '3'}}>
-            {data.version}
+          {this.renderPlatforms()}
         </div>
 
         {/* Footer */}
