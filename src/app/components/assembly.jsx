@@ -25,7 +25,8 @@ class Assembly extends React.Component{
     return _.map(this.props.item.environments, (item, index) => {
       const data = {
         id: item.ciId ,
-        name: item.ciAttributes.profile , 
+        profile: item.ciAttributes.profile , 
+        name: item.ciName, 
         status: 'Success',
         version: item.impl,
         description: item.ciAttributes.description,

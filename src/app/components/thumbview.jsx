@@ -11,9 +11,14 @@ class ThumbView extends React.Component {
     return (
       <div className="thumbView" style={{ display: 'flex' , flexDirection: 'column' , flexGrow: '1'}}>
         {/* Title */}
-        <h3 style={{margin: '0em' , flexGrow: '0'}}>
-          {data.name}
-        </h3>
+        <div style={{margin: '0em' , flexGrow: '0'}}>
+          <h3 style={{margin: '0em' , float: 'left'}}>
+            {data.profile}
+          </h3>
+          <h4 style={{margin: '.1em 0 0 0' , float: 'right'}}>
+            {data.name}
+          </h4>
+        </div>
 
         {/* Body */}
         <div className="thumbBody" style={{fontSize: '1em' , width: '100%' , height: 'auto', flexGrow: '3'}}>
