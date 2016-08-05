@@ -59,7 +59,7 @@ class Main extends React.Component{
     const selectedOrg = this.props.organizations.selected;
 
     if(!items || !selectedOrg){
-      return [];
+      return {};
     }
     return items[selectedOrg].assemblies;
   }
@@ -82,7 +82,7 @@ Main.propTypes = {
   setOrgs: React.PropTypes.func,
   setEnvironments: React.PropTypes.func,
   setPlatforms: React.PropTypes.func,
-  setSelectedOrg: React.PropTypes.object,
+  setSelectedOrg: React.PropTypes.func,
   organizations: React.PropTypes.object
 };
 

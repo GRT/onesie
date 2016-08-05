@@ -10,7 +10,7 @@ function organizations(state = {} , action) {
     const orgObj = {};
 
     action.organizations.forEach( org => {
-      orgObj[org.name] = { assemblies: [] };
+      orgObj[org.name] = { assemblies: {} };
     });
 
     state = update(state, {items: {$set: orgObj }} );
