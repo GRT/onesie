@@ -30,7 +30,8 @@ class Assembly extends React.Component{
         status: 'Success',
         version: item.impl,
         description: item.ciAttributes.description,
-        clouds: item.clouds || 0
+        clouds: item.clouds || 0,
+        platforms: item.platforms? item.platforms : {}
       };
 
       const thumbStyle = {
