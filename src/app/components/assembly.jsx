@@ -4,10 +4,12 @@ import ClusterToggleView from 'onesie-toggle-environment-block';
 
 const assemblyInnerStyles = {
   margin:'10px 10px 10px 10px',
+  padding:'10px 10px 10px 10px',
   height: 'auto',
   background: '#f0f0f5',
-  border: '1px solid gray',
-  boxShadow: '0 2px 4px rgba(0, 0, 0, .48)',
+  border: '1px solid white',
+  borderRadius: '3px',
+  boxShadow: '0 4px 4px rgba(0, 0, 0, .48)',
   overflow:'hidden'
 };
 
