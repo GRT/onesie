@@ -46,6 +46,19 @@ function organizations(state = {} , action) {
     break;
 
   case namespace + '.SET.PLATFORMS':
+    const setPlatformsEnvsObj = {items: {}};
+    setPlatformsEnvsObj.items[action.organization] = {assemblies: {}};
+    setPlatformsEnvsObj.items[action.organization].assemblies[action.assembly.ciName] = { environments: {}};
+
+    var platforms = {};
+    action.platforms.forEach(function(platform){
+      platforms[platform.ciName] = platform;
+    });
+
+    const shortcut = setPlatformsEnvsObj.items[action.organization].assemblies[action.assembly.ciName].environments ;
+    shortcut[action.environment.ciName] = {platforms: {$set: platforms}}
+
+    state = update(state, setPlatformsEnvsObj);
     break;
   }
 
