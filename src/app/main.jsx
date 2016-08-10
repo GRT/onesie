@@ -6,6 +6,7 @@ import SelectComponent from './components/select.jsx';
 import orgs from './requests/get-orgs';
 import assems from './requests/get-assemblies';
 import envs from './requests/get-environments';
+import plats from './requests/get-platforms';
 
 class Main extends React.Component{
   constructor(props) {
@@ -26,19 +27,30 @@ class Main extends React.Component{
   }
 
   loadAssemblies (org) {
-    const classThis = this;
+    const thisClass = this;
     assems(this.error,{ooOrganization:org}, (assemObjs) => {
       this.props.setAssemblies(assemObjs , org);
       assemObjs.forEach(function(assem) {
-        classThis.getEnvironments(assem);
+        thisClass.getEnvironments(assem);
       });
     });
   }
 
   getEnvironments(assem) {
+    const thisClass = this;
     const org = this.props.organizations.selected;
     envs(this.error,{ooOrganization:org , ooAssembly:assem.ciName}, (envsObjs) => {
       this.props.setEnvironments(org, assem , envsObjs);
+      envsObjs.forEach(function(env){
+        thisClass.getPlatforms(env, assem);
+      });
+    });
+  }
+
+  getPlatforms(env, assem) {
+    const org = this.props.organizations.selected;
+    plats(this.error,{ooOrganization:org, ooAssembly:assem.ciName, ooEnvironment:env.ciName}, (platsObjs) => {
+      this.props.setPlatforms(org, assem, env, platsObjs);
     });
   }
 
@@ -47,7 +59,7 @@ class Main extends React.Component{
     const selectedOrg = this.props.organizations.selected;
 
     if(!items || !selectedOrg){
-      return [];
+      return {};
     }
     return items[selectedOrg].assemblies;
   }
@@ -69,7 +81,8 @@ Main.propTypes = {
   setAssemblies: React.PropTypes.func,
   setOrgs: React.PropTypes.func,
   setEnvironments: React.PropTypes.func,
-  setSelectedOrg: React.PropTypes.object,
+  setPlatforms: React.PropTypes.func,
+  setSelectedOrg: React.PropTypes.func,
   organizations: React.PropTypes.object
 };
 

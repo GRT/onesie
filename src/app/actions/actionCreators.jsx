@@ -20,11 +20,21 @@ export function setAssemblies(assems, org) {
   };
 }
 
-export function setEnvironments(org, assem , envs) {
+export function setEnvironments(org, assem, envs) {
   return {
     type: 'organizations.SET.ENVS',
     organization: org,
     assembly: assem,
     environments: envs
+  };
+}
+
+export function setPlatforms(org, assem, env, plats) {
+  return {
+    type: 'organizations.SET.PLATFORMS',
+    organization: org,
+    assembly: assem,
+    environment: env,
+    platforms: plats
   };
 }

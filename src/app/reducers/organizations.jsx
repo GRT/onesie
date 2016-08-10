@@ -10,7 +10,7 @@ function organizations(state = {} , action) {
     const orgObj = {};
 
     action.organizations.forEach( org => {
-      orgObj[org.name] = { assemblies: [] };
+      orgObj[org.name] = { assemblies: {} };
     });
 
     state = update(state, {items: {$set: orgObj }} );
@@ -22,25 +22,43 @@ function organizations(state = {} , action) {
 
   case namespace +'.SET.ASSEMBLIES':
     const setOrgAssemsObj = {items: {}};
-    setOrgAssemsObj.items[action.organization] = {$set: {assemblies: action.assemblies}};
+
+    var assemblyHash = {};
+    action.assemblies.forEach(function(assembly){
+      assemblyHash[assembly.ciName] = assembly;
+    });
+
+    setOrgAssemsObj.items[action.organization] = {$set: {assemblies: assemblyHash}};
     state = update(state, setOrgAssemsObj);
     break;
 
   case namespace + '.SET.ENVS':
     const setAssemsEnvsObj = {items: {}};
-    const assems = state.items[action.organization].assemblies;
+    setAssemsEnvsObj.items[action.organization] = {assemblies: {}};
 
-    const updatedAssems = _.map( assems, item => {
-      //TO Do: This should be changed to ciId, need to updated static data
-      if(item.ciName === action.assembly.ciName){
-        item.environments = action.environments;
-      }
-      return item;
+    var environmentHash = {};
+    action.environments.forEach(function(environment){
+      environmentHash[environment.ciName] = environment;
     });
 
-    setAssemsEnvsObj.items[action.organization] = {assemblies: {$set: updatedAssems}};
-
+    setAssemsEnvsObj.items[action.organization].assemblies[action.assembly.ciName] = { environments: {$set: environmentHash}};
     state = update(state, setAssemsEnvsObj);
+    break;
+
+  case namespace + '.SET.PLATFORMS':
+    const setPlatformsEnvsObj = {items: {}};
+    setPlatformsEnvsObj.items[action.organization] = {assemblies: {}};
+    setPlatformsEnvsObj.items[action.organization].assemblies[action.assembly.ciName] = { environments: {}};
+
+    var platforms = {};
+    action.platforms.forEach(function(platform){
+      platforms[platform.ciName] = platform;
+    });
+
+    const shortcut = setPlatformsEnvsObj.items[action.organization].assemblies[action.assembly.ciName].environments ;
+    shortcut[action.environment.ciName] = {platforms: {$set: platforms}}
+
+    state = update(state, setPlatformsEnvsObj);
     break;
   }
 

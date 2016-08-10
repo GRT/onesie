@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
 import ClusterToggleView from 'onesie-toggle-environment-block';
+import ThumbView from './thumbview.jsx';
+import ExpandedView from './expandedview.jsx';
 
 const assemblyInnerStyles = {
   margin:'10px 10px 10px 10px',
@@ -25,49 +27,33 @@ class Assembly extends React.Component{
     return _.map(this.props.item.environments, (item, index) => {
       const data = {
         id: item.ciId ,
-        name: item.ciName , 
+        profile: item.ciAttributes.profile , 
+        name: item.ciName, 
         status: 'Success',
-        version: item.impl
+        version: item.impl,
+        description: item.ciAttributes.description,
+        clouds: item.clouds || 0,
+        platforms: item.platforms? item.platforms : {}
       };
-
 
       const thumbStyle = {
-        backgroundColor: '#FF0000'
+        margin: ".5em",
+        padding: ".5em",
+        width: "10em",
+        display: "flex",
+        flexDirection: "column"
       };
 
-      const detailStyle = {
-        backgroundColor: '#0000FF'
-      };
-
-      return (<ClusterToggleView key={index} mode="thumbnail" 
-                  environment={data} 
+      return (
+        <ClusterToggleView 
+                  key={index} 
+                  mode="thumbnail" 
+                  style={{ display: "inline-block" }}
                   thumbViewStyle={thumbStyle}
-                  detailViewStyle={detailStyle}
                   >
-                  <div>
-                    <h3>{data.name}</h3>
-                    <div>
-                      <div style={{float:'left'}}>
-                        {data.version}
-                      </div>
-                      <div style={{float:'right' , textAlign:'right'}}>
-                        {data.status}
-                        </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h1>Detail View: {data.name}</h1>
-                      <div>
-                        <div style={{float:'left'}}>
-                          {data.version}
-                        </div>
-                        <div style={{float:'right' , textAlign:'right'}}>
-                          {data.status}
-                          </div>
-                      </div>
-                  </div>
-                  </ClusterToggleView>
+          <ThumbView data={data} />
+          <ExpandedView data={data}/>
+        </ClusterToggleView>
                   );
     });
   }
@@ -77,7 +63,9 @@ class Assembly extends React.Component{
   render() {
     return (
       <div style={assemblyInnerStyles}>
-        <b style={paragraphStyles}>{this.props.item.ciName}</b>
+        <div>
+          <b style={paragraphStyles}>{this.props.item.ciName}</b>
+        </div>
         {this.renderEnvironments()}
       </div>
     );

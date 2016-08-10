@@ -27,7 +27,7 @@ class Scroll extends React.Component {
 }
 
 Scroll.propTypes = {
-  assemblies: React.PropTypes.array.isRequired
+  assemblies: React.PropTypes.object.isRequired
 };
 
 export default Scroll;
