@@ -10,12 +10,15 @@ Onesie makes http calls to a local dev server you can install as follows.
  $ git clone git@github.com:GRT/oo-static-server.git
  $ cd oo-static-server
  $ npm i
- $ npm run serve
+ $ npm start
 ```
 ### 2. Build and serve Onesie:
 
 ```
-npm start
+ $ git clone git@github.com:GRT/onesie.git
+ $ cd onesie
+ $ npm i
+ $ npm start
 ```
 Navigate to [127.0.0.1:8080](http://127.0.0.1:8080/)
 
