@@ -20,6 +20,6 @@ export default function (error, params, callback) {
     '/assemblies/' + params.ooAssembly +
     '/operations' + '/environments/' + params.ooEnvironment +
     '/platforms/' + params.ooPlatform +
-    'components/compute/instances.json?instances_state=all';
+    '/components/compute/instances.json?instances_state=all';
   doGet(error, path, assemblyArray => { callback(assemblyArray); });
 }
