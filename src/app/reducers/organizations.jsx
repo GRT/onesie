@@ -1,19 +1,22 @@
 import _ from 'lodash';
 import update from 'react-addons-update';
+import OrganizationStateBuilder from '../utils/orgStateBuilderUtil';
 
 const namespace = 'organizations';
 
 function organizations(state = {} , action) {
+  const builder = new OrganizationStateBuilder();
 
   switch(action.type){
   case namespace +'.SET.ORGS':
-    const orgObj = {};
+    const orgObj ={};
 
     action.organizations.forEach( org => {
       orgObj[org.name] = { assemblies: {} };
     });
 
-    state = update(state, {items: {$set: orgObj }} );
+    builder.setItems({$set: orgObj });
+    state = update(state, builder.state );
     break;
 
   case namespace +'.SET.SELECTED':
@@ -21,44 +24,33 @@ function organizations(state = {} , action) {
     break;
 
   case namespace +'.SET.ASSEMBLIES':
-    const setOrgAssemsObj = {items: {}};
-
     var assemblyHash = {};
-    action.assemblies.forEach(function(assembly){
-      assemblyHash[assembly.ciName] = assembly;
-    });
+    action.assemblies.forEach( assembly => { assemblyHash[assembly.ciName] = assembly; });
 
-    setOrgAssemsObj.items[action.organization] = {$set: {assemblies: assemblyHash}};
-    state = update(state, setOrgAssemsObj);
+    builder.setOrganization(action.organization , {$set: {assemblies: assemblyHash}});
+    state = update(state, builder.state);
     break;
 
   case namespace + '.SET.ENVS':
-    const setAssemsEnvsObj = {items: {}};
-    setAssemsEnvsObj.items[action.organization] = {assemblies: {}};
-
     var environmentHash = {};
-    action.environments.forEach(function(environment){
-      environmentHash[environment.ciName] = environment;
-    });
+    action.environments.forEach(environment => { environmentHash[environment.ciName] = environment; });
 
-    setAssemsEnvsObj.items[action.organization].assemblies[action.assembly.ciName] = { environments: {$set: environmentHash}};
-    state = update(state, setAssemsEnvsObj);
+    builder.setAssembly(action.organization, action.assembly.ciName, { environments: {$set: environmentHash}});
+    state = update(state, builder.state);
     break;
 
   case namespace + '.SET.PLATFORMS':
-    const setPlatformsEnvsObj = {items: {}};
-    setPlatformsEnvsObj.items[action.organization] = {assemblies: {}};
-    setPlatformsEnvsObj.items[action.organization].assemblies[action.assembly.ciName] = { environments: {}};
-
     var platforms = {};
-    action.platforms.forEach(function(platform){
-      platforms[platform.ciName] = platform;
-    });
+    action.platforms.forEach(platform => { platforms[platform.ciName] = platform; });
 
-    const shortcut = setPlatformsEnvsObj.items[action.organization].assemblies[action.assembly.ciName].environments ;
-    shortcut[action.environment.ciName] = {platforms: {$set: platforms}}
+    builder.setEnvironment(action.organization , action.assembly.ciName, action.environment.ciName, {platforms: {$set: platforms}});
+    state = update(state, builder.state);
+    break;
 
-    state = update(state, setPlatformsEnvsObj);
+    case namespace + '.SET.PLATFORMS.IPS':
+      builder.setPlatform(action.organization , 
+        action.assembly.ciName, action.environment.ciName, action.platform.ciName, {ips: {$set: action.ips}} );
+      state = update(state, builder.state);
     break;
   }
 
