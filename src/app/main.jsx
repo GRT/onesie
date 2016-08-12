@@ -7,6 +7,7 @@ import orgs from './requests/get-orgs';
 import assems from './requests/get-assemblies';
 import envs from './requests/get-environments';
 import plats from './requests/get-platforms';
+import ips from './requests/get-ips';
 
 class Main extends React.Component{
   constructor(props) {
@@ -27,23 +28,17 @@ class Main extends React.Component{
   }
 
   loadAssemblies (org) {
-    const thisClass = this;
     assems(this.error,{ooOrganization:org}, (assemObjs) => {
       this.props.setAssemblies(assemObjs , org);
-      assemObjs.forEach(function(assem) {
-        thisClass.getEnvironments(assem);
-      });
+      assemObjs.forEach(assem => { this.getEnvironments(assem); });
     });
   }
 
   getEnvironments(assem) {
-    const thisClass = this;
     const org = this.props.organizations.selected;
     envs(this.error,{ooOrganization:org , ooAssembly:assem.ciName}, (envsObjs) => {
       this.props.setEnvironments(org, assem , envsObjs);
-      envsObjs.forEach(function(env){
-        thisClass.getPlatforms(env, assem);
-      });
+      envsObjs.forEach(env => { this.getPlatforms(env, assem); });
     });
   }
 
@@ -51,6 +46,16 @@ class Main extends React.Component{
     const org = this.props.organizations.selected;
     plats(this.error,{ooOrganization:org, ooAssembly:assem.ciName, ooEnvironment:env.ciName}, (platsObjs) => {
       this.props.setPlatforms(org, assem, env, platsObjs);
+      platsObjs.forEach(platform => { this.getPlatformIps(env, assem, platform); });
+    });
+  }
+
+  getPlatformIps(env, assem, plat){
+    const org = this.props.organizations.selected;
+    ips(this.error,{ooOrganization:org, ooAssembly:assem.ciName, ooEnvironment:env.ciName , ooPlatform: plat.ciName }, (ips) => {
+      if(ips){
+        this.props.setPlatformIps(org, assem, env, plat, ips);
+      }
     });
   }
 
@@ -83,6 +88,7 @@ Main.propTypes = {
   setEnvironments: React.PropTypes.func,
   setPlatforms: React.PropTypes.func,
   setSelectedOrg: React.PropTypes.func,
+  setPlatformIps: React.PropTypes.func,
   organizations: React.PropTypes.object
 };
 
