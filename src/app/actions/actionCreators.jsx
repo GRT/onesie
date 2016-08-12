@@ -38,3 +38,14 @@ export function setPlatforms(org, assem, env, plats) {
     platforms: plats
   };
 }
+
+export function setPlatformIps(org, assem, env, plat, ips) {
+  return {
+    type: 'organizations.SET.PLATFORMS.IPS',
+    organization: org,
+    assembly: assem,
+    environment: env,
+    platform: plat,
+    ips: ips
+  };
+}

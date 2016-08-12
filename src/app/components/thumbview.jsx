@@ -6,9 +6,19 @@ class ThumbView extends React.Component {
     super(props);
   }
 
+  ipString(platform){
+    const ips = platform.ips;
+
+    if(Array.isArray(ips)){
+      return ips.join(', ');
+    } else {
+      return 'No Ips Found'
+    }
+  }
+
   renderPlatforms() {
     const data = this.props.data;
-    return _.map(data.platforms, function(plat, index){
+    return _.map(data.platforms, (plat, index) => {
               return (
                 <div key={index} style={{width: '100%'}}>
                   <div style={{width: '100%' , fontWeight: 'bold', fontSize: '.75em'}}>
@@ -16,7 +26,7 @@ class ThumbView extends React.Component {
                     <div style={{float: 'right'}}>{plat.ciAttributes.version}.VER</div>
                   </div>
                   <div style={{width: '100%' , clear: 'both', fontSize: '.5em'}}>
-                    Put IPs here
+                    {this.ipString(plat)}
                   </div>
                 </div>);
               });
