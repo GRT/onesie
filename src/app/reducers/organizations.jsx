@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import update from 'react-addons-update';
 import OrganizationStateBuilder from '../utils/orgStateBuilderUtil';
 
@@ -48,7 +47,7 @@ function organizations(state = {} , action) {
     break;
 
     case namespace + '.SET.PLATFORMS.IPS':
-      builder.setPlatform(action.organization , 
+      builder.setPlatform(action.organization ,
         action.assembly.ciName, action.environment.ciName, action.platform.ciName, {ips: {$set: action.ips}} );
       state = update(state, builder.state);
     break;

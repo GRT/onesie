@@ -21,12 +21,7 @@ export default function (error, params, callback) {
     '/operations' + '/environments/' + params.ooEnvironment +
     '/platforms/' + params.ooPlatform +
     '/components/compute/instances.json?instances_state=all';
-  doGet(error, path, instances => { 
-
-    var ips = instances.map( inst => {
-      return inst.ciAttributes.public_ip;
-    });
-    
-    callback(ips); 
+  doGet(error, path, instances => {
+    callback(instances.map(inst => inst.ciAttributes.public_ip));
   });
 }
