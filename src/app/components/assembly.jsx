@@ -9,8 +9,8 @@ const assemblyInnerStyles = {
   padding:'10px 10px 10px 10px',
   height: 'auto',
   background: '#f0f0f5',
-  border: '1px solid white',
-  borderRadius: '3px',
+  border: '2px solid black',
+  borderRadius: '1px',
   boxShadow: '0 4px 4px rgba(0, 0, 0, .48)',
   overflow:'hidden'
 };
@@ -37,17 +37,21 @@ class Assembly extends React.Component{
       };
 
       const thumbStyle = {
-        margin: ".5em",
-        padding: ".5em",
-        width: "10em",
-        display: "flex",
-        flexDirection: "column"
+        margin: '.5em',
+        padding: '.5em',
+        width: '10em',
+        display: 'flex',
+        flexDirection: 'column',
+        border: '1px solid white',
+        borderRadius: '3px',
+        boxShadow: '0 2px 2px rgba(0, 0, 0, .48)',
+        overflow:'hidden'
       };
 
       return (
         <ClusterToggleView 
                   key={index} 
-                  mode="thumbnail" 
+                  mode="thumbnail"
                   style={{ display: "inline-block" }}
                   thumbViewStyle={thumbStyle}
                   >
