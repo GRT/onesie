@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'react-bootstrap/lib/Button';
+import Modal from 'react-bootstrap/lib/Modal';
 
 const SettingStyles = {
     //height: 'auto',
@@ -10,19 +10,20 @@ const SettingStyles = {
     width: '50%'
 };
 
-class SettingsView extends React.Component {
+class SettingsButton extends React.Component {
 
     render() {
         return (
           <div style={{float:'right'}}>
             Hello
-            <img src="src/static/gear.png" style={SettingStyles} />
+            //<img src="src/static/gear.png" style={[SettingStyles]} />
           </div>
         );
     }
 }
 
-export default SettingsView;
+export default SettingsButton;
+
 
 class SettingsModal extends React.Component {
   render () {
