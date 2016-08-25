@@ -3,7 +3,7 @@ import React from 'react';
 import Scroll from './components/scroll.jsx';
 import SelectComponent from './components/select.jsx';
 import FooterComponent from './components/footer.jsx';
-import SettingsView from './components/settingsview.jsx';
+import SettingsButton from './components/settingsbutton.jsx';
 
 import orgs from './requests/get-orgs';
 import assems from './requests/get-assemblies';
@@ -80,7 +80,7 @@ class Main extends React.Component{
                     organization={this.props.organizations.selected || ''}
             />
           <FooterComponent>
-            <SettingsView />
+            <SettingsButton />
           </FooterComponent>
         </div>
     );
