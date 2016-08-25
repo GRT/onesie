@@ -2,6 +2,8 @@
 import React from 'react';
 import Scroll from './components/scroll.jsx';
 import SelectComponent from './components/select.jsx';
+import FooterComponent from './components/footer.jsx';
+import SettingsView from './components/settingsview.jsx';
 
 import orgs from './requests/get-orgs';
 import assems from './requests/get-assemblies';
@@ -77,6 +79,9 @@ class Main extends React.Component{
             <Scroll assemblies={this.getAssemblies()}
                     organization={this.props.organizations.selected || ''}
             />
+          <FooterComponent>
+            <SettingsView />
+          </FooterComponent>
         </div>
     );
   }
@@ -93,5 +98,3 @@ Main.propTypes = {
 };
 
 export default Main;
-
-
