@@ -1,7 +1,7 @@
 import React from 'react';
 
 const footerStyles = {
-    height: 'auto',
+    height: '30px',
     background: '#f0f0f5',
     border: '1px solid white',
     borderRadius: '3px',
@@ -17,7 +17,7 @@ class FooterComponent extends React.Component {
 
     render() {
         return (
-            <div style={footerStyles}>Hello</div>
+            <div style={footerStyles}></div>
         );
     }
 }

@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/lib/Modal';
 
 const SettingStyles = {
     //height: 'auto',
-    background: '#f0f0f5',
+    //background: '#f0f0f5',
     //border: '1px solid white',
     //borderRadius: '3px',
     height: '50%',
@@ -16,7 +16,7 @@ class SettingsButton extends React.Component {
         return (
           <div style={{float:'right'}}>
             Hello
-            //<img src="src/static/gear.png" style={[SettingStyles]} />
+            <img src="src/static/gear.png" style={[SettingStyles]} />
           </div>
         );
     }
