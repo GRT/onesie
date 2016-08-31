@@ -29,31 +29,39 @@ Navigate to [127.0.0.1:8080](http://127.0.0.1:8080/)
 
 ## Notes
 1. To generate package.json (which is already included in the project), run:
-   npm init
+  - `npm init`
+
 
 2. Install webpack both gloabally and locally within the project, run:
-   npm install webpack --global
-   npm install webpack --save-dev
+  - `npm install webpack --global`
+  - `npm install webpack --save-dev`
+
 
 3. Install babel loader, file loader and react, run:
-   npm install babel-loader --save-dev
-   npm install react --save
-   npm install --save react-dom
-   npm install file-loader --save-dev
+  - `npm install babel-loader --save-dev`
+  - `npm install react --save`
+  - `npm install --save react-dom`
+  - `npm install file-loader --save-dev`
+
 
 4. Set up webpack dev server, run:
-   npm install webpack-dev-server --global
-   npm install webpack-dev-server --save-dev
+  - `npm install webpack-dev-server --global`
+  - `npm install webpack-dev-server --save-dev`
 
-5. To start the dev server, run:
-   webpack-dev-server
-   
- 
 
+5. Run the server (without build steps): run:
+  - `npm run serve` OR `node server`
 
 
 
 
+### React Hot Loader
 
-
-
+  > The React Hot Loader (RHL) is being used in this project. 
+  >  RHL is a development tool that assists with maintaing state on the client while editing the source files. 
+  > This is a very nice feature for client side development, because it removes browser refreshes, and *auto-magically* run build tasks in the background, which saves keystrokes and manual intervention
+  
+#### Useful RHL Links
+  - [GitHub Project](https://github.com/gaearon/react-hot-loader)
+  - [Project Site](http://gaearon.github.io/react-hot-loader/)
+  - [Getting Started Guide](http://gaearon.github.io/react-hot-loader/getstarted/)
