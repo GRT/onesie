@@ -1,9 +1,8 @@
 'use strict';
 
-
-/* Module Dependencies */
 import webpack from 'webpack';
 import config from './config'
+
 
 
 /* 
@@ -12,12 +11,7 @@ import config from './config'
   More Details: https://webpack.github.io/docs/multiple-entry-points.html
 */
 var entryPointConfigs = {
-  app: [
-    'webpack/hot/dev-server/client?http://127.0.0.1:8080',
-    'webpack/hot/only-dev-server',
-    './index.js', // Your appʼs entry point,
-    './index.html'
-  ],
+  app: ['./index.js', './index.html'],
   vendor: [
     'lodash',
     'radium',
@@ -53,38 +47,28 @@ var moduleLoaderConfigs = [
   Plugins are super flexible and allow for custom code/extension implementations, which is great for custom build steps.
   More Details: https://webpack.github.io/docs/plugins.html
 */
-var pluginConfigs = [
-  new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
-  new webpack.HotModuleReplacementPlugin()
-  
-];
+var pluginConfigs = [new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')];
+
 
 
 /*
-  Development Hooks:
+  Environment Hooks:
   This section checks the 'env' property on the 'config' import.
   If 'env' equals 'dev' we will add the Hot Module Development Hooks (Along with others in the future)
-
-  Note: this would be a good place to add other dev/prod build steps, like minification/uglify/Sourcemaps.
-
+  **NOTE**: This would be a good place to add other dev/prod build steps, like minification/uglify/Sourcemaps.
 */
-// if (config && config.env && config.env === 'dev') {
-//   entryPointConfigs.app.unshift(
-//     'webpack/hot/dev-server/client?http://127.0.0.1:8080',
-//     'webpack/hot/only-dev-server'
-//   );
-//   pluginConfigs.push(new webpack.HotModuleReplacementPlugin())
-// }
-// if (config && config.env && config.env === 'dev') {
-//   entryPointConfigs.app.unshift(
-//     'webpack/hot/dev-server',
-//     'webpack/hot/only-dev-server'
-//   );
-//   pluginConfigs.push(new webpack.HotModuleReplacementPlugin())
-// }
+if (config && config.env && config.env === 'dev') {
+  entryPointConfigs.app.unshift(
+    'webpack-dev-server/client?http://127.0.0.1:8080',
+    'webpack/hot/only-dev-server'
+  );
+  pluginConfigs.push(new webpack.HotModuleReplacementPlugin())
+}
 
 
-var configuration = {
+
+
+module.exports = {
   context: __dirname + '/src/app',
   entry: entryPointConfigs,
   output: {
@@ -97,7 +81,4 @@ var configuration = {
   },
   module: { loaders: moduleLoaderConfigs },
   plugins: pluginConfigs
-}
-
-
-module.exports = configuration;
+};

@@ -16,7 +16,7 @@ class SelectComponent extends React.Component {
   }
 
   selectorLabel () {
-    return this.state.choice ? undefined : <option value="none">Select An Organization</option>;
+    return this.state.choice ? undefined : <option value="none">Select Organization</option>;
   }
 
   render () {
