@@ -7,7 +7,7 @@
     "test": "npm run unit; npm run lint",
     "unit": "mocha test/.setup.js $(find ./test -name '*-test.js')",
     "build": "npm test; webpack",
-    "serve": "node server.js",
+    "serve": "webpack-dev-server --hot",
     "lint": "eslint ./src/**/*.js*",
     "start": "npm i; npm run build; npm run serve",
     "clear": "rm -rf node_modules; npm i",
