@@ -1,3 +1,6 @@
+'use strict';
+
+
 /* Module Dependencies */
 var webpack = require('webpack');
 
@@ -9,6 +12,8 @@ var webpack = require('webpack');
 */
 var entryPointConfigs = {
   app: [
+    'webpack-dev-server/client?http://127.0.0.1:8080', // WebpackDevServer host and port
+    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
     './index.js', // Your appʼs entry point,
     './index.html'
   ],
@@ -30,12 +35,26 @@ var entryPointConfigs = {
 
 
 /*
+  Module Loader Configurations:
+  Loaders are used for front end build steps. They allow preprocessing of files as modules are sucked into the code (i.e. require/import)
+  More Details: https://webpack.github.io/docs/loaders.html
+*/
+var moduleLoaderConfigs = [
+  { test: /\.(js|jsx)$/, loaders: ['react-hot', 'babel?presets[]=react,presets[]=es2015'], exclude: /node_modules/ },
+  { test: /\.html$/, loader: 'file?name=[name].[ext]' },
+  { test: /\.css$/, loader: 'style-loader!css-loader' },
+  { test: /\.ico$/, loader: 'file-loader?name=[name].[ext]' }
+];
+
+
+/*
   Plugin Configurations:
   Plugins are super flexible and allow for custom code/extension implementations, which is great for custom build steps.
   More Details: https://webpack.github.io/docs/plugins.html
 */
 var pluginConfigs = [
-  new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
+  new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+  new webpack.HotModuleReplacementPlugin()
 ];
 
 
@@ -50,16 +69,6 @@ module.exports = {
     modulesDirectories: ['node_modules', './src'],
     extensions: ['', '.js', '.jsx']
   },
-  module: {
-    loaders: [
-      {
-        test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel-loader',
-        query: { presets: ['es2015', 'react'] }
-      },
-      { test: /\.html$/, loader: 'file?name=[name].[ext]' },
-      { test: /\.css$/, loader: 'style-loader!css-loader' },
-      { test: /\.ico$/, loader: 'file-loader?name=[name].[ext]'}
-    ]
-  },
+  module: { loaders: moduleLoaderConfigs },
   plugins: pluginConfigs
 };
