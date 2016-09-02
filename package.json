@@ -19,6 +19,7 @@
   "dependencies": {
     "lodash": "^4.13.1",
     "onesie-toggle-environment-block": "latest",
+    "path": "^0.12.7",
     "radium": "^0.17.1",
     "react": "^0.14.7",
     "react-addons-update": "^15.2.0",
