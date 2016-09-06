@@ -49,8 +49,9 @@ Navigate to [127.0.0.1:8080](http://127.0.0.1:8080/)
   - `npm install webpack-dev-server --save-dev`
 
 
-5. Run the server (without build steps): run:
-  - `npm run serve` OR `node server`
+5. Run the server (without build steps), run:
+  - `npm run serve`
+  - **NOTE:** `npm run serve` actually calls `webpack-dev-server --hot`. This is good for development purposes, but not for production.
 
 
 
