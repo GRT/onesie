@@ -7,9 +7,12 @@ class ThumbView extends React.Component {
   }
 
   ipString(platform){
-    const ips = platform.ips;
+    const ips = _.map(platform.ips , (obj) => {
+      return obj.ip;
+    });
 
-    if(Array.isArray(ips)){
+
+    if(ips.length > 0){
       return ips.join(', ');
     } else {
       return 'No Ips Found';
