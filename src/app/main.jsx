@@ -74,9 +74,7 @@ class Main extends React.Component{
         <div>
           <SelectComponent options={ Object.keys(this.props.organizations.items) }
                            onChange={this.dropDownChange} />
-            <Scroll assemblies={this.getAssemblies()}
-                    organization={this.props.organizations.selected || ''}
-            />
+            <Scroll />
         </div>
     );
   }
