@@ -49,3 +49,14 @@ export function setPlatformIps(org, assem, env, plat, ips) {
     ips: ips
   };
 }
+
+export function setFdqns(org, assem, env, plat, fdqns) {
+  return {
+    type: 'organizations.SET.PLATFORMS.FDQNS',
+    organization: org,
+    assemblyName: assem,
+    environmentName: env,
+    platformName: plat,
+    fdqns: fdqns
+  };
+}
