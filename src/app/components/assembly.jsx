@@ -3,6 +3,10 @@ import React from 'react';
 import ClusterToggleView from 'onesie-toggle-environment-block';
 import ThumbView from './thumbview.jsx';
 import ExpandedView from './expandedview.jsx';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions/actionCreators';
+
 
 const assemblyInnerStyles = {
   margin:'10px 10px 10px 10px',
@@ -33,7 +37,9 @@ class Assembly extends React.Component{
         version: item.impl,
         description: item.ciAttributes.description,
         clouds: item.clouds || 0,
-        platforms: item.platforms? item.platforms : {}
+        platforms: item.platforms? item.platforms : {},
+        assembly: this.props.item.ciName,
+        organization: this.props.organization
       };
 
       const thumbStyle = {
@@ -80,4 +86,14 @@ Assembly.propTypes = {
   item: React.PropTypes.object.isRequired
 };
 
-export default Assembly;
+function mapStateToProps(state){
+  return {
+    organization: state.organizations.selected
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+export default connect(mapStateToProps , mapDispatchToProps)(Assembly);

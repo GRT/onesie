@@ -15,15 +15,14 @@ import {doGet} from './base-request';
  *
  * @param callback  - callback
  */
+
 export default function (error, params, callback) {
   const path = '/' + params.ooOrganization +
     '/assemblies/' + params.ooAssembly +
     '/operations' + '/environments/' + params.ooEnvironment +
     '/platforms/' + params.ooPlatform +
-    '/components/compute/instances.json?instances_state=all';
+    '/components/fqdn/instances.json';
   doGet(error, path, instances => {
-    callback(instances.map(inst => {
-      return {hostname: inst.ciAttributes.hostname , ip: inst.ciAttributes.public_ip};
-    }));
+    callback(instances.map(inst => JSON.parse(inst.ciAttributes.entries) ));
   });
 }

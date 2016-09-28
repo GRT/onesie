@@ -51,6 +51,15 @@ function organizations(state = {} , action) {
         action.assembly.ciName, action.environment.ciName, action.platform.ciName, {ips: {$set: action.ips}} );
       state = update(state, builder.state);
     break;
+
+    case namespace + '.SET.PLATFORMS.FDQNS':
+      builder.setPlatform(action.organization,
+                          action.assemblyName, 
+                          action.environmentName, 
+                          action.platformName, 
+                          {fdqns: {$set: action.fdqns}} );
+      state = update(state, builder.state);
+    break;
   }
 
   return state;

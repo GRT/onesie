@@ -9,6 +9,10 @@ import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions/actionCreators';
+
 const formStyle = {
   paddingLeft: '90px',
   paddingRight: '90px'
@@ -59,4 +63,14 @@ class ConfigView extends React.Component {
 
 }
 
-export default ConfigView;
+function mapStateToProps(state){
+  return {
+    organization: state.organizations.config
+  };
+ }
+
+ function mapDispatchToProps(dispatch) {
+   return bindActionCreators(actionCreators, dispatch);
+ }
+
+ export default connect(mapStateToProps , mapDispatchToProps)(ConfigView);
