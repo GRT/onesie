@@ -22,7 +22,6 @@ export default function (error, params, callback) {
     '/platforms/' + params.ooPlatform +
     '/components/compute/instances.json?instances_state=all';
   doGet(error, path, instances => {
-
     callback(instances.map(inst => {
       return {hostname: inst.ciAttributes.hostname , ip: inst.ciAttributes.public_ip};
     }));
