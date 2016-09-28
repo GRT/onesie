@@ -46,4 +46,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
 
-export default connect(mapStateToProps , mapDispatchToProps)(Scroll);;
+export default connect(mapStateToProps , mapDispatchToProps)(Scroll);
