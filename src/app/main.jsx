@@ -17,7 +17,7 @@ class Main extends React.Component{
   }
 
   componentDidMount() {
-    orgs(this.error, orgObjs => { this.props.setOrgs(orgObjs); });
+    orgs(this.error, orgObjs => { this.props.setOrgs(orgObjs.data); });
   }
 
   error (e) { throw e; }
@@ -28,7 +28,8 @@ class Main extends React.Component{
   }
 
   loadAssemblies (org) {
-    assems(this.error,{ooOrganization:org}, (assemObjs) => {
+    assems(this.error,{ooOrganization:org}, assems => {
+      const assemObjs = assems.data ;
       this.props.setAssemblies(assemObjs , org);
       assemObjs.forEach(assem => { this.getEnvironments(assem); });
     });
@@ -36,7 +37,8 @@ class Main extends React.Component{
 
   getEnvironments(assem) {
     const org = this.props.organizations.selected;
-    envs(this.error,{ooOrganization:org , ooAssembly:assem.ciName}, (envsObjs) => {
+    envs(this.error,{ooOrganization:org , ooAssembly:assem.ciName}, envs => {
+      const envsObjs = envs.data ;
       this.props.setEnvironments(org, assem , envsObjs);
       envsObjs.forEach(env => { this.getPlatforms(env, assem); });
     });

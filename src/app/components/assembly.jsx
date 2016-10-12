@@ -31,11 +31,10 @@ class Assembly extends React.Component{
     return _.map(this.props.item.environments, (item, index) => {
       const data = {
         id: item.ciId ,
-        profile: item.ciAttributes.profile , 
+        profile: item.profile ,
         name: item.ciName, 
         status: 'Success',
         version: item.impl,
-        description: item.ciAttributes.description,
         clouds: item.clouds || 0,
         platforms: item.platforms? item.platforms : {},
         assembly: this.props.item.ciName,
