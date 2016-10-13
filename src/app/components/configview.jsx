@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
@@ -21,31 +22,36 @@ const formStyle = {
 
 class ConfigView extends React.Component {
 
-  saveData() {
-    alert('Hello');
+  constructor(props) {
+    super(props);
+    this.saveData = this.saveData.bind(this);
+  }
+
+  saveData(input) {
+    this.props.setConfig(ReactDOM.findDOMNode(formOneOpsHost).value, ReactDOM.findDOMNode(formAPIToken).value);
   }
 
 
   render() {
     return(
       <div >
-        <PageHeader style={{borderBottom: '1px solid #ddd', textAlign: 'center'}}>API Settings</PageHeader> <br/>
+        <PageHeader style={{borderBottom: '1px solid #ddd', textAlign: 'center'}}>Settings</PageHeader> <br/>
         <Form horizontal style={formStyle}>
-          <FormGroup controlId="formHorizontalEmail">
+          <FormGroup controlId="formOneOpsHost">
             <Col sm={2}>
               OneOps Host:
             </Col>
             <Col sm={8}>
-              <FormControl type="text" placeholder="OneOps Host" />
+              <FormControl ref="host" type="text" placeholder="OneOps Host" defaultValue={this.props.config.host} />
             </Col>
           </FormGroup>
 <br/>
-          <FormGroup controlId="formHorizontalPassword">
+          <FormGroup controlId="formAPIToken">
             <Col sm={2}>
               API Token:
             </Col>
             <Col sm={8}>
-              <FormControl type="text" placeholder="API Token" />
+              <FormControl ref="token" type="text" placeholder="API Token" defaultValue={this.props.config.token} />
             </Col>
           </FormGroup>
 <br/>
@@ -65,7 +71,7 @@ class ConfigView extends React.Component {
 
 function mapStateToProps(state){
   return {
-    organization: state.organizations.config
+    config: state.organizations.config
   };
  }
 
