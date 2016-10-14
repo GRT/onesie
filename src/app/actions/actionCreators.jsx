@@ -1,3 +1,11 @@
+export function setConfig(host, token) {
+  return {
+    type: "organizations.SET.CONFIG",
+    oneOpsHost: host,
+    apiToken: token
+  }
+}
+
 export function setOrgs(orgs) {
   return {
     type: 'organizations.SET.ORGS',

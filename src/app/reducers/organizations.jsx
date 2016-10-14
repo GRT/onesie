@@ -18,6 +18,12 @@ function organizations(state = {} , action) {
     state = update(state, builder.state );
     break;
 
+  case namespace +'.SET.CONFIG':
+    console.log(state);
+    state = update(state, {$merge: {config: {host: action.oneOpsHost, token: action.apiToken}}});
+    console.log(state);
+    break;
+
   case namespace +'.SET.SELECTED':
     state = update(state, {selected: {$set: action.selectedOrganization }} );
     break;
@@ -54,9 +60,9 @@ function organizations(state = {} , action) {
 
     case namespace + '.SET.PLATFORMS.FDQNS':
       builder.setPlatform(action.organization,
-                          action.assemblyName, 
-                          action.environmentName, 
-                          action.platformName, 
+                          action.assemblyName,
+                          action.environmentName,
+                          action.platformName,
                           {fdqns: {$set: action.fdqns}} );
       state = update(state, builder.state);
     break;
