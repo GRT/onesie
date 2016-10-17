@@ -10,6 +10,6 @@ import {doGet} from './base-request';
  * @param callback  - callback
  */
 export default function (error, callback) {
-  const path = '/account/organizations.json';
+  const path = '/organizations.json';
   doGet(error,path, orgArray => { callback(orgArray); });
 }
