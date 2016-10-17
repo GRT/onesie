@@ -27,10 +27,22 @@ class Main extends React.Component{
     this.loadAssemblies(org);
   }
 
+  *getAssemblyData () {
+    let counter = 0;
+    let assemblies = this.getAssemblies();
+    /*eslint-disable no-constant-condition*/
+    while( true ){
+      this.getEnvironments(assemblies[ Object.keys( assemblies )[counter] ]);
+      counter++;
+      yield null;
+    }
+  }
+
   loadAssemblies (org) {
     assems(this.error,{ooOrganization:org}, (assemObjs) => {
       this.props.setAssemblies(assemObjs , org);
-      assemObjs.forEach(assem => { this.getEnvironments(assem); });
+      this.dataGen = this.getAssemblyData();
+      this.dataGen.next();
     });
   }
 
@@ -56,6 +68,7 @@ class Main extends React.Component{
       if(ips){
         this.props.setPlatformIps(org, assem, env, plat, ips);
       }
+      this.dataGen.next();
     });
   }
 

@@ -11,7 +11,7 @@ import config from './config'
   More Details: https://webpack.github.io/docs/multiple-entry-points.html
 */
 var entryPointConfigs = {
-  app: ['./index.js', './index.html'],
+  app: ['babel-polyfill','./index.js', './index.html'],
   vendor: [
     'lodash',
     'radium',
