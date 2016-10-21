@@ -19,10 +19,10 @@ import {doGet} from './base-request';
 export default function (error, params, callback) {
   const path = '/' + params.ooOrganization +
     '/assemblies/' + params.ooAssembly +
-    '/operations' + '/environments/' + params.ooEnvironment +
+    '/environments/' + params.ooEnvironment +
     '/platforms/' + params.ooPlatform +
-    '/components/fqdn/instances.json';
+    '/fqdn/instances.json';
   doGet(error, path, instances => {
-    callback(instances.map(inst => JSON.parse(inst.ciAttributes.entries) ));
+    callback(instances.data.map(inst => JSON.parse(inst.ciAttributes.entries) ));
   });
 }
