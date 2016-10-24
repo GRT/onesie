@@ -6,6 +6,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions/actionCreators';
 
+const scollStyles = {
+  padding:'0px 0px 20px 0px'
+};
+
 class Scroll extends React.Component {
 
   constructor(props) {
@@ -26,12 +30,14 @@ class Scroll extends React.Component {
     }
 
     return (
-      <ScrollArea
-        smoothScrolling={true}
-        minScrollSize={40}
-        onScroll={this.handleScroll} >
-        {_.map( assemblies, (item, index) => this.renderAssembies(item, index) ) }
-      </ScrollArea>
+      <div style={scollStyles}>
+        <ScrollArea
+          smoothScrolling={true}
+          minScrollSize={40}
+          onScroll={this.handleScroll} >
+          {_.map( assemblies, (item, index) => this.renderAssembies(item, index) ) }
+        </ScrollArea>
+      </div>
     );
   }
 }
