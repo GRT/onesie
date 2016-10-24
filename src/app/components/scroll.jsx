@@ -24,20 +24,19 @@ class Scroll extends React.Component {
   render() {
     const selectedOrg = this.props.organizations.selected;
     var assemblies = [];
-    
+
     if(selectedOrg){
       assemblies = this.props.organizations.items[selectedOrg].assemblies;
     }
 
     return (
-      <div style={scollStyles}>
-        <ScrollArea
-          smoothScrolling={true}
-          minScrollSize={40}
-          onScroll={this.handleScroll} >
-          {_.map( assemblies, (item, index) => this.renderAssembies(item, index) ) }
-        </ScrollArea>
-      </div>
+      <ScrollArea
+        style={scollStyles}
+        smoothScrolling={true}
+        minScrollSize={40}
+        onScroll={this.handleScroll} >
+        {_.map( assemblies, (item, index) => this.renderAssembies(item, index) ) }
+      </ScrollArea>
     );
   }
 }
