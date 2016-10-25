@@ -25,7 +25,7 @@ class ThumbView extends React.Component {
               (<div key={index} style={{width: '100%'}}>
                   <div style={{width: '100%' , fontWeight: 'bold', fontSize: '.75em'}}>
                     <div style={{float: 'left'}}>{plat.ciName}</div>
-                    <div style={{float: 'right'}}>{plat.ciAttributes.version}.VER</div>
+                    <div style={{float: 'right', padding: '0 .5em 0 0'}}>{plat.ciAttributes.version}.VER</div>
                   </div>
                   <div style={{width: '100%' , clear: 'both', fontSize: '.5em'}}>
                     {this.ipString(plat)}
@@ -37,9 +37,9 @@ class ThumbView extends React.Component {
     const data = this.props.data;
 
     return (
-      <div className="thumbView" style={{ display: 'flex' , flexDirection: 'column' , flexGrow: '1'}}>
+      <div className="thumbView" style={{ display: 'block', width: '13em'}}>
         {/* Title */}
-        <div style={{margin: '0em' , flexGrow: '0'}}>
+        <div style={{margin: '0em' , flexGrow: '0', padding: '0 .5em 1em 0'}}>
           <h3 style={{margin: '0em' , float: 'left'}}>
             {data.profile}
           </h3>
@@ -49,12 +49,12 @@ class ThumbView extends React.Component {
         </div>
 
         {/* Body */}
-        <div className="thumbBody" style={{fontSize: '1em' , width: '100%' , height: 'auto', flexGrow: '3'}}>
+        <div className="thumbBody" style={{fontSize: '1em' , width: '100%' , height: '12em', overflow: 'scroll', padding: '0 .3em 0 0'}}>
           {this.renderPlatforms()}
         </div>
 
         {/* Footer */}
-        <div className="thumbFooter" style={{fontSize: '0.5em' , width: '100%', flexGrow: '0'}}>
+        <div className="thumbFooter" style={{fontSize: '0.5em' , width: '100%', height: '2em', padding: '.5em'}}>
           <div style={{display:'inline-block', verticalAlign: 'top', textAlign:'left', width: '70%'}}>
             {data.description}
           </div>

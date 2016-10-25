@@ -31,8 +31,8 @@ class Assembly extends React.Component{
     return _.map(this.props.item.environments, (item, index) => {
       const data = {
         id: item.ciId ,
-        profile: item.ciAttributes.profile , 
-        name: item.ciName, 
+        profile: item.ciAttributes.profile ,
+        name: item.ciName,
         status: 'Success',
         version: item.impl,
         description: item.ciAttributes.description,
@@ -45,7 +45,7 @@ class Assembly extends React.Component{
       const thumbStyle = {
         margin: '.5em',
         padding: '.5em',
-        width: '10em',
+        width: '14em',
         display: 'flex',
         flexDirection: 'column',
         border: '1px solid white',
@@ -55,8 +55,8 @@ class Assembly extends React.Component{
       };
 
       return (
-        <ClusterToggleView 
-                  key={index} 
+        <ClusterToggleView
+                  key={index}
                   mode="thumbnail"
                   style={{ display: "inline-block" }}
                   thumbViewStyle={thumbStyle}
