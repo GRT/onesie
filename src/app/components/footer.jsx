@@ -6,7 +6,7 @@ const footerStyles = {
     border: '1px solid white',
     borderRadius: '3px',
     overflow:'hidden',
-    position: 'absolute',
+    position: 'fixed',
     right: 0,
     bottom: 0,
     left: 0
