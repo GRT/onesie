@@ -9,7 +9,7 @@ class ExpandedView extends React.Component {
 
   constructor(props) {
     super(props);
-    
+
     const data = this.props.data;
     _.map(data.platforms, (plat) => {
       this.getFDQNs(plat);
@@ -17,12 +17,12 @@ class ExpandedView extends React.Component {
   }
 
   getFDQNs(platform) {
-    fdqns(this.error, {ooOrganization:this.props.data.organization, ooAssembly:this.props.data.assembly, 
+    fdqns(this.error, {ooOrganization:this.props.data.organization, ooAssembly:this.props.data.assembly,
       ooEnvironment:this.props.data.name , ooPlatform: platform.ciName },
       (domainNames) => {
-        this.props.setFdqns(this.props.data.organization, 
-                            this.props.data.assembly, 
-                            this.props.data.name, 
+        this.props.setFdqns(this.props.data.organization,
+                            this.props.data.assembly,
+                            this.props.data.name,
                             platform.ciName, domainNames)
     });
   }
@@ -64,7 +64,7 @@ class ExpandedView extends React.Component {
     return (
       <div style={{padding: '1em'}}>
         <h3>{data.organization} > {data.assembly} > {data.name}</h3>
-        <div style={{display: 'flex'}}>
+        <div style={{display: 'flex', height: '35em', overflow: 'scroll'}}>
           {_.map(data.platforms, (plat) => {
             index += 1;
             return this.renderPlatform(plat , index);
