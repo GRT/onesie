@@ -44,7 +44,7 @@ class Assembly extends React.Component{
       const thumbStyle = {
         margin: '.5em',
         padding: '.5em',
-        width: '10em',
+        width: '14em',
         display: 'flex',
         flexDirection: 'column',
         border: '1px solid white',
@@ -54,8 +54,8 @@ class Assembly extends React.Component{
       };
 
       return (
-        <ClusterToggleView 
-                  key={index} 
+        <ClusterToggleView
+                  key={index}
                   mode="thumbnail"
                   style={{ display: "inline-block" }}
                   thumbViewStyle={thumbStyle}

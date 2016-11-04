@@ -2,6 +2,8 @@
 import React from 'react';
 import Scroll from './components/scroll.jsx';
 import SelectComponent from './components/select.jsx';
+import FooterComponent from './components/footer.jsx';
+import SettingsButton from './components/settingsbutton.jsx';
 
 import orgs from './requests/get-orgs';
 import assems from './requests/get-assemblies';
@@ -89,7 +91,12 @@ class Main extends React.Component{
         <div>
           <SelectComponent options={ Object.keys(this.props.organizations.items) }
                            onChange={this.dropDownChange} />
-            <Scroll />
+            <Scroll assemblies={this.getAssemblies()}
+                    organization={this.props.organizations.selected || ''}
+            />
+          <FooterComponent>
+            <SettingsButton />
+          </FooterComponent>
         </div>
     );
   }
@@ -106,5 +113,3 @@ Main.propTypes = {
 };
 
 export default Main;
-
-
