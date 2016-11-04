@@ -23,7 +23,7 @@ class Scroll extends React.Component {
 
   render() {
     const selectedOrg = this.props.organizations.selected;
-    var assemblies = [];
+    let assemblies = [];
 
     if(selectedOrg){
       assemblies = this.props.organizations.items[selectedOrg].assemblies;
@@ -40,6 +40,10 @@ class Scroll extends React.Component {
     );
   }
 }
+
+Scroll.propTypes = {
+  organizations: React.PropTypes.object
+};
 
 function mapStateToProps(state){
   return {
