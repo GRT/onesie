@@ -1,7 +1,7 @@
 export default {
   host: 'localhost',
-  port: '3000',
+  port: '4000',
   protocol: 'http:',
-  token: 'cSgKFsMczoZySbWRfoXs',
+  token: '',
   env: 'dev'
 };
