@@ -51,7 +51,7 @@ class Main extends React.Component{
 
   getEnvironments(assem) {
     const org = this.props.organizations.selected;
-    envs(this.error,{ooOrganization:org , ooAssembly:assem.ciName}, envs => {
+    envs(this.error,{ooOrganization:org , ooAssembly: assem ? assem.ciName:''}, envs => {
       const envsObjs = envs.data ;
       this.props.setEnvironments(org, assem , envsObjs);
       envsObjs.forEach(env => { this.getPlatforms(env, assem); });
@@ -64,6 +64,7 @@ class Main extends React.Component{
       this.props.setPlatforms(org, assem, env, platsObjs);
       platsObjs.forEach(platform => { this.getPlatformIps(env, assem, platform); });
     });
+    this.dataGen.next();
   }
 
   getPlatformIps(env, assem, plat){
@@ -72,7 +73,6 @@ class Main extends React.Component{
       if(ips){
         this.props.setPlatformIps(org, assem, env, plat, ips);
       }
-      this.dataGen.next();
     });
   }
 
