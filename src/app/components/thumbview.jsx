@@ -49,7 +49,7 @@ class ThumbView extends React.Component {
         </div>
 
         {/* Body */}
-        <div className="thumbBody" style={{fontSize: '1em' , width: '100%' , height: '12em', overflow: 'scroll', padding: '0 .3em 0 0'}}>
+        <div className="thumbBody" style={{fontSize: '1em' , width: '100%' , height: '12em', overflow: 'auto', padding: '0 .3em 0 0'}}>
           {this.renderPlatforms()}
         </div>
 
