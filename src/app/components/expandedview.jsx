@@ -64,7 +64,7 @@ class ExpandedView extends React.Component {
     return (
       <div style={{padding: '1em'}}>
         <h3>{data.organization} > {data.assembly} > {data.name}</h3>
-        <div style={{display: 'flex', height: '35em', overflow: 'scroll'}}>
+        <div style={{display: 'flex', height: '35em', overflow: 'auto'}}>
           {_.map(data.platforms, (plat) => {
             index += 1;
             return this.renderPlatform(plat , index);
