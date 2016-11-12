@@ -1,5 +1,5 @@
 # onesie
-[![Build Status](http://jenkins.flowstate.io/job/onesie-build-deploy/badge/icon)](http://jenkins.flowstate.io/job/onesie-build-deploy)
+[![Build Status](http://ec2-54-157-241-76.compute-1.amazonaws.com:8080/job/onesie-build-deploy)
 
 ## Usage
 
