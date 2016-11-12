@@ -1,5 +1,6 @@
 # onesie
-[![Build Status](http://ec2-54-157-241-76.compute-1.amazonaws.com:8080/job/onesie-build-deploy/badge/icon)](http://ec2-54-157-241-76.compute-1.amazonaws.com:8080/job/onesie-build-deploy)
+[![Build Status](http://ec2-54-157-241-76.compute-1.amazonaws.com:8080/buildStatus/icon?job=onesie-build-deploy)](http://ec2-54-157-241-76.compute-1.amazonaws.com:8080/job/onesie-build-deploy)
+
 ## Usage
 
 Onesie makes http calls to a local dev server you can install as follows.
