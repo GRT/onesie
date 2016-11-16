@@ -1,5 +1,5 @@
 export default {
-  host: '0.0.0.0',
+  host: 'localhost',
   port: '4000',
   protocol: 'http:',
   token: '',
