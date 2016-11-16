@@ -32,9 +32,11 @@ class Main extends React.Component{
   *getAssemblyData () {
     let counter = 0;
     let assemblies = this.getAssemblies();
+    const assemblyNames = Object.keys( assemblies );
     /*eslint-disable no-constant-condition*/
-    while( true ){
-      this.getEnvironments(assemblies[ Object.keys( assemblies )[counter] ]);
+    while( counter < assemblyNames.length ){
+      let assem = assemblies[ assemblyNames[counter] ];
+      this.getEnvironments(assem);
       counter++;
       yield null;
     }
@@ -92,8 +94,7 @@ class Main extends React.Component{
           <SelectComponent options={ Object.keys(this.props.organizations.items) }
                            onChange={this.dropDownChange} />
             <Scroll assemblies={this.getAssemblies()}
-                    organization={this.props.organizations.selected || ''}
-            />
+                    organization={this.props.organizations.selected || ''} />
           <FooterComponent>
             <SettingsButton />
           </FooterComponent>

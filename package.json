@@ -17,6 +17,7 @@
     "test"
   ],
   "dependencies": {
+    "grt-console": "^1.0.1",
     "lodash": "^4.13.1",
     "onesie-toggle-environment-block": "latest",
     "path": "^0.12.7",
