@@ -1,7 +1,7 @@
 'use strict';
 
 import webpack from 'webpack';
-import config from './config'
+import config from './config';
 
 
 
@@ -18,13 +18,11 @@ var entryPointConfigs = {
     'react',
     'react-addons-update',
     'react-dom',
-    'react-drop-down',
     'react-redux',
     'react-router',
     'react-router-redux',
     'react-scrollbar',
-    'redux',
-    'url-join'
+    'redux'
   ]
 };
 
@@ -62,7 +60,7 @@ if (config && config.env && config.env === 'dev') {
     'webpack-dev-server/client?http://127.0.0.1:8080',
     'webpack/hot/only-dev-server'
   );
-  pluginConfigs.push(new webpack.HotModuleReplacementPlugin())
+  pluginConfigs.push(new webpack.HotModuleReplacementPlugin());
 }
 
 
