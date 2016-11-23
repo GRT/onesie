@@ -5,7 +5,7 @@ Onesie is a dashboard for summarizing useful date from a [OneOps](http://oneops.
 
 ## Usage
 
-Onesie makes http calls to a local dev server you can install as follows.
+Onesie makes http calls to a local dev server you can install as follows.  
 
 ### 1. Start OneOps Dev Server:
 ```sh
