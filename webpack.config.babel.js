@@ -21,7 +21,6 @@ var entryPointConfigs = {
     'react-redux',
     'react-router',
     'react-router-redux',
-    'react-scrollbar',
     'redux'
   ]
 };
