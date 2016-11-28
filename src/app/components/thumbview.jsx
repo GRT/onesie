@@ -11,11 +11,12 @@ class ThumbView extends React.Component {
       return obj.ip;
     });
 
-
     if(ips.length > 0){
       return ips.join(', ');
     } else {
-      return 'No Ips Found';
+      let imgUrl = 'https://i1.wp.com/cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif';
+      return <div style={{ backgroundImage: 'url('+ imgUrl + ')', margin: 'auto',
+                         height:'48px', width:'48px' }}/>;
     }
   }
 

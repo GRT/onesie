@@ -1,9 +1,11 @@
 # onesie
-[![Build Status](http://jenkins.flowstate.io/job/onesie-build-deploy/badge/icon)](http://jenkins.flowstate.io/job/onesie-build-deploy)
+[![Build Status](http://ec2-54-174-134-21.compute-1.amazonaws.com:8080/buildStatus/icon?job=onesie-build-deploy)](http://ec2-54-157-241-76.compute-1.amazonaws.com:8080/job/onesie-build-deploy)
+
+Onesie is a dashboard for summarizing useful date from a [OneOps](http://oneops.com/) instance.
 
 ## Usage
 
-Onesie makes http calls to a local dev server you can install as follows.
+Onesie makes http calls to a local dev server you can install as follows.  
 
 ### 1. Start OneOps Dev Server:
 ```sh

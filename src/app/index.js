@@ -6,6 +6,7 @@ import React from 'react';
 
 import { Provider } from 'react-redux';
 import store from './store';
+import { grtGiant } from 'grt-console';
 
 const router = (
 	<Provider store={store}>
@@ -14,3 +15,5 @@ const router = (
   );
 
 ReactDOM.render(router, document.getElementById('main'));
+
+grtGiant('Made with love by: ');

@@ -18,11 +18,11 @@ import {doGet} from './base-request';
 export default function (error, params, callback) {
   const path = '/' + params.ooOrganization +
     '/assemblies/' + params.ooAssembly +
-    '/operations' + '/environments/' + params.ooEnvironment +
+    '/environments/' + params.ooEnvironment +
     '/platforms/' + params.ooPlatform +
-    '/components/compute/instances.json?instances_state=all';
+    '/compute/instances.json';
   doGet(error, path, instances => {
-    callback(instances.map(inst => {
+    callback(instances.data.map(inst => {
       return {hostname: inst.ciAttributes.hostname , ip: inst.ciAttributes.public_ip};
     }));
   });

@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import React from 'react';
-import ScrollArea from 'react-scrollbar';
 import Assembly from './assembly.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -23,23 +22,23 @@ class Scroll extends React.Component {
 
   render() {
     const selectedOrg = this.props.organizations.selected;
-    var assemblies = [];
+    let assemblies = [];
 
     if(selectedOrg){
       assemblies = this.props.organizations.items[selectedOrg].assemblies;
     }
 
     return (
-      <ScrollArea
-        style={scollStyles}
-        smoothScrolling={true}
-        minScrollSize={40}
-        onScroll={this.handleScroll} >
+      <div style={scollStyles}>
         {_.map( assemblies, (item, index) => this.renderAssembies(item, index) ) }
-      </ScrollArea>
+      </div>
     );
   }
 }
+
+Scroll.propTypes = {
+  organizations: React.PropTypes.object
+};
 
 function mapStateToProps(state){
   return {

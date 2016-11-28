@@ -19,7 +19,7 @@ class Main extends React.Component{
   }
 
   componentDidMount() {
-    orgs(this.error, orgObjs => { this.props.setOrgs(orgObjs); });
+    orgs(this.error, orgObjs => { this.props.setOrgs(orgObjs.data); });
   }
 
   error (e) { throw e; }
@@ -29,16 +29,32 @@ class Main extends React.Component{
     this.loadAssemblies(org);
   }
 
+  *getAssemblyData () {
+    let counter = 0;
+    let assemblies = this.getAssemblies();
+    const assemblyNames = Object.keys( assemblies );
+    /*eslint-disable no-constant-condition*/
+    while( counter < assemblyNames.length ){
+      let assem = assemblies[ assemblyNames[counter] ];
+      this.getEnvironments(assem);
+      counter++;
+      yield null;
+    }
+  }
+
   loadAssemblies (org) {
-    assems(this.error,{ooOrganization:org}, (assemObjs) => {
+    assems(this.error,{ooOrganization:org}, assems => {
+      const assemObjs = assems.data ;
       this.props.setAssemblies(assemObjs , org);
-      assemObjs.forEach(assem => { this.getEnvironments(assem); });
+      this.dataGen = this.getAssemblyData();
+      this.dataGen.next();
     });
   }
 
   getEnvironments(assem) {
     const org = this.props.organizations.selected;
-    envs(this.error,{ooOrganization:org , ooAssembly:assem.ciName}, (envsObjs) => {
+    envs(this.error,{ooOrganization:org , ooAssembly: assem ? assem.ciName:''}, envs => {
+      const envsObjs = envs.data ;
       this.props.setEnvironments(org, assem , envsObjs);
       envsObjs.forEach(env => { this.getPlatforms(env, assem); });
     });
@@ -50,6 +66,7 @@ class Main extends React.Component{
       this.props.setPlatforms(org, assem, env, platsObjs);
       platsObjs.forEach(platform => { this.getPlatformIps(env, assem, platform); });
     });
+    this.dataGen.next();
   }
 
   getPlatformIps(env, assem, plat){
@@ -77,8 +94,7 @@ class Main extends React.Component{
           <SelectComponent options={ Object.keys(this.props.organizations.items) }
                            onChange={this.dropDownChange} />
             <Scroll assemblies={this.getAssemblies()}
-                    organization={this.props.organizations.selected || ''}
-            />
+                    organization={this.props.organizations.selected || ''} />
           <FooterComponent>
             <SettingsButton />
           </FooterComponent>
