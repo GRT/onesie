@@ -37,7 +37,7 @@ class ThumbView extends React.Component {
     const data = this.props.data;
 
     return (
-      <div className="thumbView" style={{ display: 'block', width: '13em'}}>
+      <div className="thumbView" style={{ display: 'block', width: '13em', cursor: 'pointer'}}>
         {/* Title */}
         <div style={{margin: '0em' , flexGrow: '0', padding: '0 .5em 1em 0'}}>
           <h3 style={{margin: '0em' , float: 'left'}}>
