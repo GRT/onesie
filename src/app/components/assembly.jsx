@@ -13,7 +13,7 @@ const assemblyInnerStyles = {
   padding:'10px 10px 10px 10px',
   height: 'auto',
   background: '#f0f0f5',
-  border: '2px solid black',
+  border: '2px solid #666666',
   borderRadius: '1px',
   boxShadow: '0 4px 4px rgba(0, 0, 0, .48)',
   overflow:'hidden'
