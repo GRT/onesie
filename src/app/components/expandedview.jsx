@@ -5,6 +5,16 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions/actionCreators';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
+const imageStyle = {
+  margin: 'auto',
+  verticalAlign: 'top',
+  width: '30px',
+  backgroundColor: '#f0f0f5'
+}
+
+const clipboardImagePath = "src/static/clipboard.png";
+const clipboardImageMouseOverPath = "src/static/clipboard_mouseover.png"
+
 class ExpandedView extends React.Component {
 
   constructor(props) {
@@ -38,12 +48,14 @@ class ExpandedView extends React.Component {
 
   getFqdns(obj, index) {
     var fqdns = Object.keys(obj);
+    // this sets the instance variable that contains the FQDNs for a platform that can be copied
     this.fqdnCopyText[index] = fqdns.toString();
     return fqdns;
   }
 
   getIps(obj, index) {
     var ips = obj.ip;
+    // this sets the instance variable that stores the list of IPs in an array that's specific for a platform
     this.platformIpArray[index] = ips.toString(); // add IP to array within current platform
     return ips;
   }
@@ -51,24 +63,65 @@ class ExpandedView extends React.Component {
   setIpCopyText(index) {
     // ipCopyText is an array of array
     // it can be referenced as ipCopyText[platformIndex][ipIndex]
+    // The index corresponds to the index of the platform
     this.ipCopyText[index] = this.platformIpArray;
+  }
+
+  convertIpCopyString(ipArray) { // convert IP array to a string containing IPs separated by new line to be copied
+    if(ipArray == null || typeof ipArray == "undefined") {
+      return "";
+    }
+    else {
+      return ipArray.join("\n");
+    }
+  }
+
+  convertFqdnCopyString(fqdn) { // convert FQDNs to a string of FQDNs separated by new line to be copied
+    if(fqdn == null) {
+      return "";
+    }
+    else {
+      return fqdn.split(",").join("\n");
+    }
+  }
+
+  handleMouseOver(event) {
+    event.target.src = clipboardImageMouseOverPath;
+  }
+
+  handleMouseOut(event) {
+    event.target.src = clipboardImagePath;
   }
 
   renderPlatform(plat , index) {
     var cpuIndex = 0;
     var fdqnIndex = 0;
+    this.platformIpArray = [];
     return (
       <div style={{flex: '1' }} key={index}>
         <h2>{plat.ciName}</h2>
         <div style={{paddingLeft: '2em'}}>
-          <h3>FQDNs</h3>
+          <h3>FQDNs&nbsp;&nbsp;
+            <CopyToClipboard text={this.convertFqdnCopyString(this.fqdnCopyText[index-1])}
+              onCopy={() => this.setState({textCopiedMessage: 'FQDNs copied for platform ' + plat.ciName})}>
+              <input type="image" src={clipboardImagePath} style={imageStyle} onMouseOver={(event)=>this.handleMouseOver(event)} onMouseOut={(event)=>this.handleMouseOut(event)} />
+            </CopyToClipboard>
+          </h3>
           { _.map(plat.fdqns , (fdqn) => {
             fdqnIndex += 1;
             return this.getFqdns(fdqn, index-1);
             })
           }
 
-          <h3 style={{marginBottom: '0.5em'}}>Computers</h3>
+          <div key={index}>
+            <h3 style={{marginBottom: '0.5em'}}>
+              Computes&nbsp;&nbsp;
+              <CopyToClipboard text={this.convertIpCopyString(this.ipCopyText[index-1])}
+                onCopy={() => this.setState({textCopiedMessage: 'IPs copied for platform ' + plat.ciName})}>
+                <input type="image" src={clipboardImagePath} style={imageStyle} onMouseOver={(event)=>this.handleMouseOver(event)} onMouseOut={(event)=>this.handleMouseOut(event)} />
+              </CopyToClipboard>
+            </h3>
+          </div>
           { _.map(plat.ips, (obj) => {
             cpuIndex += 1;
             return ( <div style={{paddingBottom: '1em'}} key={cpuIndex}>
@@ -96,17 +149,7 @@ class ExpandedView extends React.Component {
             return this.renderPlatform(plat , index);
           })}
         </div>
-        <div>
-          <CopyToClipboard text={this.fqdnCopyText.toString()}
-            onCopy={() => this.setState({textCopiedMessage: 'FQDNs copied'})}>
-            <button>Copy FQDNs to Clipboard</button>
-          </CopyToClipboard>&nbsp;
-          <CopyToClipboard text={this.ipCopyText.toString()}
-            onCopy={() => this.setState({textCopiedMessage: 'IPs copied'})}>
-            <button>Copy IPs to Clipboard</button>
-          </CopyToClipboard>
-          <span style={{fontSize: '12px', color: 'red'}}>&nbsp;{this.state.textCopiedMessage}</span>
-        </div>
+        <div><span style={{fontSize: '12px', color: 'red'}}>&nbsp;{this.state.textCopiedMessage}</span></div>
       </div>
     );
   }
