@@ -3,11 +3,9 @@ import ReactDOM from 'react-dom';
 
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import Form from 'react-bootstrap/lib/Form';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
-import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
 
 import { connect } from 'react-redux';
@@ -17,7 +15,7 @@ import * as actionCreators from '../actions/actionCreators';
 const formStyle = {
   paddingLeft: '90px',
   paddingRight: '90px'
-}
+};
 
 
 class ConfigView extends React.Component {
@@ -27,8 +25,8 @@ class ConfigView extends React.Component {
     this.saveData = this.saveData.bind(this);
   }
 
-  saveData(input) {
-    this.props.setConfig(ReactDOM.findDOMNode(formOneOpsHost).value, ReactDOM.findDOMNode(formAPIToken).value);
+  saveData() {
+    this.props.setConfig(ReactDOM.findDOMNode('formOneOpsHost').value, ReactDOM.findDOMNode('formAPIToken').value);
   }
 
 
@@ -45,7 +43,7 @@ class ConfigView extends React.Component {
               <FormControl ref="host" type="text" placeholder="OneOps Host" defaultValue={this.props.config.host} />
             </Col>
           </FormGroup>
-<br/>
+          <br/>
           <FormGroup controlId="formAPIToken">
             <Col sm={2}>
               API Token:
@@ -54,7 +52,7 @@ class ConfigView extends React.Component {
               <FormControl ref="token" type="text" placeholder="API Token" defaultValue={this.props.config.token} />
             </Col>
           </FormGroup>
-<br/>
+          <br/>
           <FormGroup>
             <Col smOffset={2} sm={10}>
               <Button onClick={this.saveData}>
@@ -69,14 +67,19 @@ class ConfigView extends React.Component {
 
 }
 
+ConfigView.propTypes = {
+  config: React.PropTypes.object.isRequired,
+  setConfig: React.PropTypes.func
+};
+
 function mapStateToProps(state){
   return {
     config: state.organizations.config
   };
- }
+}
 
- function mapDispatchToProps(dispatch) {
-   return bindActionCreators(actionCreators, dispatch);
- }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
 
- export default connect(mapStateToProps , mapDispatchToProps)(ConfigView);
+export default connect(mapStateToProps , mapDispatchToProps)(ConfigView);

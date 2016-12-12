@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import fdqns from '../requests/get-fdqns';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -10,10 +11,10 @@ const imageStyle = {
   verticalAlign: 'top',
   width: '30px',
   backgroundColor: '#f0f0f5'
-}
+};
 
-const clipboardImagePath = "src/static/clipboard.png";
-const clipboardImageMouseOverPath = "src/static/clipboard_mouseover.png"
+const clipboardImagePath = 'src/static/clipboard.png';
+const clipboardImageMouseOverPath = 'src/static/clipboard_mouseover.png';
 
 class ExpandedView extends React.Component {
 
@@ -34,27 +35,32 @@ class ExpandedView extends React.Component {
   }
 
   getFDQNs(platform) {
-    fdqns(this.error, {ooOrganization:this.props.data.organization, ooAssembly:this.props.data.assembly,
-      ooEnvironment:this.props.data.name , ooPlatform: platform.ciName },
-      (domainNames) => {
-        this.props.setFdqns(this.props.data.organization,
-                            this.props.data.assembly,
-                            this.props.data.name,
-                            platform.ciName, domainNames)
-    });
+    const reqObj = {
+      ooOrganization:this.props.data.organization,
+      ooAssembly: this.props.data.assembly,
+      ooEnvironment:this.props.data.name,
+      ooPlatform: platform.ciName
+    };
+    const fqdnHandler = (domainNames) => {
+      this.props.setFdqns(this.props.data.organization,
+      this.props.data.assembly,
+      this.props.data.name,
+      platform.ciName, domainNames);
+    };
+    fdqns(this.error, reqObj, fqdnHandler);
   }
 
   error (e) { throw e; }
 
   getFqdns(obj, index) {
-    var fqdns = Object.keys(obj);
+    let fqdns = Object.keys(obj);
     // this sets the instance variable that contains the FQDNs for a platform that can be copied
     this.fqdnCopyText[index] = fqdns.toString();
     return fqdns;
   }
 
   getIps(obj, index) {
-    var ips = obj.ip;
+    let ips = obj.ip;
     // this sets the instance variable that stores the list of IPs in an array that's specific for a platform
     this.platformIpArray[index] = ips.toString(); // add IP to array within current platform
     return ips;
@@ -68,20 +74,20 @@ class ExpandedView extends React.Component {
   }
 
   convertIpCopyString(ipArray) { // convert IP array to a string containing IPs separated by new line to be copied
-    if(ipArray == null || typeof ipArray == "undefined") {
-      return "";
+    if(ipArray == null || typeof ipArray == 'undefined') {
+      return '';
     }
     else {
-      return ipArray.join("\n");
+      return ipArray.join('\n');
     }
   }
 
   convertFqdnCopyString(fqdn) { // convert FQDNs to a string of FQDNs separated by new line to be copied
     if(fqdn == null) {
-      return "";
+      return '';
     }
     else {
-      return fqdn.split(",").join("\n");
+      return fqdn.split(',').join('\n');
     }
   }
 
@@ -94,8 +100,8 @@ class ExpandedView extends React.Component {
   }
 
   renderPlatform(plat , index) {
-    var cpuIndex = 0;
-    var fdqnIndex = 0;
+    let cpuIndex = 0;
+    let fdqnIndex = 0;
     this.platformIpArray = [];
     return (
       <div style={{flex: '1' }} key={index}>
@@ -104,13 +110,13 @@ class ExpandedView extends React.Component {
           <h3>FQDNs&nbsp;&nbsp;
             <CopyToClipboard text={this.convertFqdnCopyString(this.fqdnCopyText[index-1])}
               onCopy={() => this.setState({textCopiedMessage: 'FQDNs copied for platform ' + plat.ciName})}>
-              <input type="image" src={clipboardImagePath} style={imageStyle} onMouseOver={(event)=>this.handleMouseOver(event)} onMouseOut={(event)=>this.handleMouseOut(event)} />
+              <input type='image' src={clipboardImagePath} style={imageStyle} onMouseOver={(event)=>this.handleMouseOver(event)} onMouseOut={(event)=>this.handleMouseOut(event)} />
             </CopyToClipboard>
           </h3>
           { _.map(plat.fdqns , (fdqn) => {
             fdqnIndex += 1;
             return this.getFqdns(fdqn, index-1);
-            })
+          })
           }
 
           <div key={index}>
@@ -118,7 +124,7 @@ class ExpandedView extends React.Component {
               Computes&nbsp;&nbsp;
               <CopyToClipboard text={this.convertIpCopyString(this.ipCopyText[index-1])}
                 onCopy={() => this.setState({textCopiedMessage: 'IPs copied for platform ' + plat.ciName})}>
-                <input type="image" src={clipboardImagePath} style={imageStyle} onMouseOver={(event)=>this.handleMouseOver(event)} onMouseOut={(event)=>this.handleMouseOut(event)} />
+                <input type='image' src={clipboardImagePath} style={imageStyle} onMouseOver={(event)=>this.handleMouseOver(event)} onMouseOut={(event)=>this.handleMouseOut(event)} />
               </CopyToClipboard>
             </h3>
           </div>
@@ -129,21 +135,21 @@ class ExpandedView extends React.Component {
                       <br/>
                       {this.getIps(obj, cpuIndex-1)}
                     </div>);
-            })
+          })
           }
           {this.setIpCopyText(index-1)}
         </div>
       </div>
-      )
+      );
   }
 
   render() {
     const data = this.props.data;
-    var index = 0;
+    let index = 0;
     return (
       <div style={{padding: '1em'}}>
         <h3>{data.organization} > {data.assembly} > {data.name}</h3>
-        <div style={{display: 'flex', height: '34em', overflow: 'auto'}}>
+        <div style={{display: 'flex', height: '35em', overflow: 'auto'}}>
           {_.map(data.platforms, (plat) => {
             index += 1;
             return this.renderPlatform(plat , index);
@@ -156,7 +162,8 @@ class ExpandedView extends React.Component {
 }
 
 ExpandedView.propTypes = {
-  data: React.PropTypes.object.isRequired
+  data: React.PropTypes.object.isRequired,
+  setFdqns: React.PropTypes.func
 };
 
 function mapStateToProps(state){
@@ -169,4 +176,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
 
-export default connect(mapStateToProps , mapDispatchToProps)(ExpandedView);;
+export default connect(mapStateToProps , mapDispatchToProps)(ExpandedView);

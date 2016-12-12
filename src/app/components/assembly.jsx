@@ -56,8 +56,8 @@ class Assembly extends React.Component{
       return (
         <ClusterToggleView
                   key={index}
-                  mode="thumbnail"
-                  style={{ display: "inline-block" }}
+                  mode='thumbnail'
+                  style={{ display: 'inline-block' }}
                   thumbViewStyle={thumbStyle}
                   >
           <ThumbView data={data} />
@@ -82,7 +82,8 @@ class Assembly extends React.Component{
 }
 
 Assembly.propTypes = {
-  item: React.PropTypes.object.isRequired
+  item: React.PropTypes.object.isRequired,
+  organization: React.PropTypes.string.isRequired
 };
 
 function mapStateToProps(state){
