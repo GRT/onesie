@@ -32,7 +32,7 @@ class OrganizationStateBuilder {
 
   setEnvironment(orgName, assemName, envnName, obj) {
     this.buildEnvironments(orgName, assemName);
-    this.state.items[orgName].assemblies[assemName].environments[envnName] = obj
+    this.state.items[orgName].assemblies[assemName].environments[envnName] = obj;
   }
 
   setPlatform(orgName, assemName, envnName, platName, obj){
