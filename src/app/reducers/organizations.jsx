@@ -34,6 +34,11 @@ function organizations(state = {} , action) {
     state = update(state, builder.state);
     break;
 
+  case namespace + '.SET.SCROLLLIST':
+    action.assemblies.forEach( assembly => { assemblyHash[assembly.ciName] = assembly; });
+    state = update(state, {$merge: {scrollList: {assemblies: assemblyHash}}} );
+    break;
+
   case namespace + '.SET.ENVS':
     action.environments.forEach(environment => { environmentHash[environment.ciName] = environment; });
     builder.setAssembly(action.organization, action.assembly.ciName, { environments: {$set: environmentHash}});

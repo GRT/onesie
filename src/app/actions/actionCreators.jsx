@@ -28,6 +28,13 @@ export function setAssemblies(assems, org) {
   };
 }
 
+export function setScrollList(assems) {
+  return {
+    type: 'organizations.SET.SCROLLLIST',
+    assemblies: assems
+  };
+}
+
 export function setEnvironments(org, assem, envs) {
   return {
     type: 'organizations.SET.ENVS',

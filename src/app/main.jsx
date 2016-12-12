@@ -3,6 +3,7 @@ import React from 'react';
 import Scroll from './components/scroll.jsx';
 import SelectComponent from './components/select.jsx';
 import FooterComponent from './components/footer.jsx';
+import SearchComponent from './components/search.jsx';
 import SettingsButton from './components/settingsbutton.jsx';
 
 import orgs from './requests/get-orgs';
@@ -90,15 +91,15 @@ class Main extends React.Component{
 
   render() {
     return (
-        <div>
-          <SelectComponent options={ Object.keys(this.props.organizations.items) }
-                           onChange={this.dropDownChange} />
-            <Scroll assemblies={this.getAssemblies()}
-                    organization={this.props.organizations.selected || ''} />
-          <FooterComponent>
-            <SettingsButton />
-          </FooterComponent>
-        </div>
+      <div>
+        <SelectComponent options={ Object.keys(this.props.organizations.items) }
+                         onChange={this.dropDownChange} />
+          <SearchComponent />
+          <Scroll  />
+        <FooterComponent>
+          <SettingsButton />
+        </FooterComponent>
+      </div>
     );
   }
 }

@@ -25,7 +25,13 @@ class Scroll extends React.Component {
     let assemblies = [];
 
     if(selectedOrg){
-      assemblies = this.props.organizations.items[selectedOrg].assemblies;
+      if(this.props.organizations.scrollList) {
+        assemblies = this.props.organizations.scrollList;
+      }
+      else {
+        assemblies = this.props.organizations.items[selectedOrg].assemblies;
+      }
+
     }
 
     return (
