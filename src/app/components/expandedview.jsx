@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import fdqns from '../requests/get-fdqns';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -17,50 +18,56 @@ class ExpandedView extends React.Component {
   }
 
   getFDQNs(platform) {
-    fdqns(this.error, {ooOrganization:this.props.data.organization, ooAssembly:this.props.data.assembly,
-      ooEnvironment:this.props.data.name , ooPlatform: platform.ciName },
-      (domainNames) => {
-        this.props.setFdqns(this.props.data.organization,
-                            this.props.data.assembly,
-                            this.props.data.name,
-                            platform.ciName, domainNames)
-    });
+    const reqObj = {
+      ooOrganization:this.props.data.organization,
+      ooAssembly: this.props.data.assembly,
+      ooEnvironment:this.props.data.name,
+      ooPlatform: platform.ciName
+    };
+    const fqdnHandler = (domainNames) => {
+      this.props.setFdqns(this.props.data.organization,
+      this.props.data.assembly,
+      this.props.data.name,
+      platform.ciName, domainNames);
+    };
+    fdqns(this.error, reqObj, fqdnHandler);
   }
 
   error (e) { throw e; }
 
   renderPlatform(plat , index) {
-    var cpuIndex = 0;
-    var fdqnIndex = 0;
+    let cpuIndex = 0;
+    let fdqnIndex = 0;
     return (
       <div style={{flex: '1' }} key={index}>
         <h2>{plat.ciName}</h2>
         <div style={{paddingLeft: '2em'}}>
           <h3>FQDNs</h3>
-          { _.map(plat.fdqns , (fdqn) => {
-            fdqnIndex += 1;
-            return Object.keys(fdqn);
+            {
+            _.map(plat.fdqns , (fdqn) => {
+              fdqnIndex += 1;
+              return Object.keys(fdqn);
             })
-          }
-
+            }
           <h3 style={{marginBottom: '0.5em'}}>Computers</h3>
-          { _.map(plat.ips, (obj) => {
+          {
+          _.map(plat.ips, (obj) => {
             cpuIndex += 1;
             return ( <div style={{paddingBottom: '1em'}} key={cpuIndex}>
                       <b>{obj.hostname}</b>
                       <br/>
                       {obj.ip}
                     </div>);
-            })
+          })
           }
         </div>
       </div>
-      )
+      );
   }
 
   render() {
     const data = this.props.data;
-    var index = 0;
+    let index = 0;
     return (
       <div style={{padding: '1em'}}>
         <h3>{data.organization} > {data.assembly} > {data.name}</h3>
@@ -76,7 +83,8 @@ class ExpandedView extends React.Component {
 }
 
 ExpandedView.propTypes = {
-  data: React.PropTypes.object.isRequired
+  data: React.PropTypes.object.isRequired,
+  setFdqns: React.PropTypes.func
 };
 
 function mapStateToProps(state){
@@ -89,4 +97,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
 
-export default connect(mapStateToProps , mapDispatchToProps)(ExpandedView);;
+export default connect(mapStateToProps , mapDispatchToProps)(ExpandedView);
