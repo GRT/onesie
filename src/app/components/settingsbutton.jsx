@@ -15,22 +15,22 @@ const imageStyle = {
   verticalAlign: 'middle',
   height: '25px',
   backgroundColor: '#f0f0f5'
-}
+};
 const thumb = <img src="src/static/gear.png" style={imageStyle}/>;
 
 
 class SettingsButton extends React.Component {
 
   render() {
-      return (
-        <div style={{float:'right', width:'30px'}}>
-            <ClusterToggleView
-              thumbViewStyle={thumbStyle}
-              detailViewStyle={detailStyle}
-              thumbElement={thumb}
-              detailElement={<ConfigView />} />
-        </div>
-      );
+    return (
+      <div style={{float:'right', width:'30px'}}>
+          <ClusterToggleView
+            thumbViewStyle={thumbStyle}
+            detailViewStyle={detailStyle}
+            thumbElement={thumb}
+            detailElement={<ConfigView />} />
+      </div>
+    );
   }
 }
 
