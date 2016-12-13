@@ -22,7 +22,9 @@ class SearchComponent extends React.Component {
       this.props.setScrollList([this.props.search.items[this.props.search.selected].assemblies[assemblyName]]);
     }
     else {
-      this.props.setScrollList([this.props.search.items[this.props.search.selected].assemblies]);
+      let assems = this.props.search.items[this.props.search.selected].assemblies;
+      let assemObjsArr = _.values(assems);
+      this.props.setScrollList(assemObjsArr);
     }
   }
 
@@ -34,10 +36,25 @@ class SearchComponent extends React.Component {
       assemblies = this.props.search.items[selectedOrg].assemblies;
     }
 
+    const selectStyles = {
+      float:'right',
+      fontSize: '20px',
+      color: '#111',
+      width: '100%',
+      maxWidth: '75%',
+      border: '1px solid white',
+      borderRadius: '3px',
+      boxShadow: '0 4px 4px rgba(0, 0, 0, .48)'
+    };
+
+    if(!selectedOrg) {
+      return <div></div>;
+    }
+
     return (
       <div>
-        <input id="assemblySelected" input="select" list="alist" placeholder="Search ..." onChange={this.updateAssemblyList.bind(this)} />
-        <datalist id="alist">
+        <input id='assemblySelected' input='select' list='alist' placeholder='Search ...' style={selectStyles} onChange={this.updateAssemblyList.bind(this)} />
+        <datalist id='alist'>
           {_.map( assemblies, (item, index) => this.renderOptions(item, index) )}
         </datalist>
       </div>

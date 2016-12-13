@@ -1,5 +1,8 @@
 import React from 'react';
 import {StyleRoot} from 'radium';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions/actionCreators';
 
 /**
   Custom select input for the dropdown, similar to the implementation here:
@@ -59,7 +62,18 @@ class SelectComponent extends React.Component {
 
 SelectComponent.propTypes = {
   options: React.PropTypes.array.isRequired,
-  onChange: React.PropTypes.func.isRequired
+  onChange: React.PropTypes.func.isRequired,
+  organizations: React.PropTypes.object
 };
 
-export default SelectComponent;
+function mapStateToProps(state){
+  return {
+    organizations: state.organizations
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+export default connect(mapStateToProps , mapDispatchToProps)(SelectComponent);

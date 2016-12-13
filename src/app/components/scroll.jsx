@@ -21,19 +21,8 @@ class Scroll extends React.Component {
   }
 
   render() {
-    const selectedOrg = this.props.organizations.selected;
     let assemblies = [];
-
-    if(selectedOrg){
-      if(this.props.organizations.scrollList) {
-        assemblies = this.props.organizations.scrollList;
-      }
-      else {
-        assemblies = this.props.organizations.items[selectedOrg].assemblies;
-      }
-
-    }
-
+    assemblies = this.props.organizations.scrollList.assemblies;
     return (
       <div style={scollStyles}>
         {_.map( assemblies, (item, index) => this.renderAssembies(item, index) ) }

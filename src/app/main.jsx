@@ -47,6 +47,7 @@ class Main extends React.Component{
     assems(this.error,{ooOrganization:org}, assems => {
       const assemObjs = assems.data ;
       this.props.setAssemblies(assemObjs , org);
+      this.props.setScrollList(assemObjs);
       this.dataGen = this.getAssemblyData();
       this.dataGen.next();
     });
@@ -93,8 +94,8 @@ class Main extends React.Component{
     return (
       <div>
         <SelectComponent options={ Object.keys(this.props.organizations.items) }
-                         onChange={this.dropDownChange} />
-          <SearchComponent />
+                         onChange={this.dropDownChange} /> <br/>
+                       <SearchComponent /> <br/><br/><br/>
           <Scroll  />
         <FooterComponent>
           <SettingsButton />
@@ -106,6 +107,8 @@ class Main extends React.Component{
 
 Main.propTypes = {
   setAssemblies: React.PropTypes.func,
+  getAssemblies: React.PropTypes.func,
+  setScrollList: React.PropTypes.func,
   setOrgs: React.PropTypes.func,
   setEnvironments: React.PropTypes.func,
   setPlatforms: React.PropTypes.func,
