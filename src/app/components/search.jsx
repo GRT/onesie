@@ -37,11 +37,12 @@ class SearchComponent extends React.Component {
     }
 
     const selectStyles = {
+      margin: '10px 10px 10px 10px',
       float:'right',
       fontSize: '20px',
       color: '#111',
       width: '100%',
-      maxWidth: '75%',
+      maxWidth: '50%',
       border: '1px solid white',
       borderRadius: '3px',
       boxShadow: '0 4px 4px rgba(0, 0, 0, .48)'
@@ -53,7 +54,7 @@ class SearchComponent extends React.Component {
 
     return (
       <div>
-        <input id='assemblySelected' input='select' list='alist' placeholder='Search ...' style={selectStyles} onChange={this.updateAssemblyList.bind(this)} />
+        <input id='assemblySelected' input='search' list='alist' placeholder='Search ...' style={selectStyles} onChange={this.updateAssemblyList.bind(this)} />
         <datalist id='alist'>
           {_.map( assemblies, (item, index) => this.renderOptions(item, index) )}
         </datalist>

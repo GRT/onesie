@@ -94,7 +94,7 @@ class Main extends React.Component{
     return (
       <div>
         <SelectComponent options={ Object.keys(this.props.organizations.items) }
-                         onChange={this.dropDownChange} /> <br/>
+                         onChange={this.dropDownChange} />
                        <SearchComponent /> <br/><br/><br/>
           <Scroll  />
         <FooterComponent>
