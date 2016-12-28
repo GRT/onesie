@@ -6,7 +6,7 @@ import rootReducer from './reducers/index';
 
 //Create default store
 const defaultState = {
-  organizations: { selected: null , items: {}, config: {token: '', host: ''}}
+  organizations: { selected: null , items: {}, config: {token: '', host: ''}, scrollList: {}}
 };
 
 const store = createStore(rootReducer , defaultState, window.devToolsExtension && window.devToolsExtension());

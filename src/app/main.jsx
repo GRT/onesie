@@ -3,6 +3,7 @@ import React from 'react';
 import Scroll from './components/scroll.jsx';
 import SelectComponent from './components/select.jsx';
 import FooterComponent from './components/footer.jsx';
+import SearchComponent from './components/search.jsx';
 import SettingsButton from './components/settingsbutton.jsx';
 
 import orgs from './requests/get-orgs';
@@ -46,6 +47,7 @@ class Main extends React.Component{
     assems(this.error,{ooOrganization:org}, assems => {
       const assemObjs = assems.data ;
       this.props.setAssemblies(assemObjs , org);
+      this.props.setScrollList(assemObjs);
       this.dataGen = this.getAssemblyData();
       this.dataGen.next();
     });
@@ -90,21 +92,23 @@ class Main extends React.Component{
 
   render() {
     return (
-        <div>
-          <SelectComponent options={ Object.keys(this.props.organizations.items) }
-                           onChange={this.dropDownChange} />
-            <Scroll assemblies={this.getAssemblies()}
-                    organization={this.props.organizations.selected || ''} />
-          <FooterComponent>
-            <SettingsButton />
-          </FooterComponent>
-        </div>
+      <div>
+        <SelectComponent options={ Object.keys(this.props.organizations.items) }
+                         onChange={this.dropDownChange} />
+                       <SearchComponent /> <br/><br/><br/>
+          <Scroll  />
+        <FooterComponent>
+          <SettingsButton />
+        </FooterComponent>
+      </div>
     );
   }
 }
 
 Main.propTypes = {
   setAssemblies: React.PropTypes.func,
+  getAssemblies: React.PropTypes.func,
+  setScrollList: React.PropTypes.func,
   setOrgs: React.PropTypes.func,
   setEnvironments: React.PropTypes.func,
   setPlatforms: React.PropTypes.func,
